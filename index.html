@@ -12,9 +12,94 @@
           theme: {
             extend: {
               "colors": {
-                      "electric-blue": "#0033AD",
+                      "on-primary-fixed": "#1a1c1c",
+                      "on-tertiary-container": "#636565",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-secondary": "#002e6a",
+                      "error": "#ffb4ab",
+                      "surface": "#000000",
+                      "surface-container-highest": "#353535",
+                      "primary": "#ffffff",
+                      "surface-bright": "#393939",
+                      "outline-variant": "#444748",
+                      "surface-container": "#1f1f1f",
+                      "on-tertiary": "#2f3131",
+                      "error-container": "#93000a",
+                      "surface-container-high": "#2a2a2a",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-secondary-fixed-variant": "#004395",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#5d5f5f",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-background": "#e2e2e2",
+                      "glass-border": "rgba(255, 255, 255, 0.15)",
+                      "tertiary-fixed": "#e2e2e2",
+                      "deep-void": "#0B0C10",
+                      "inverse-on-surface": "#303030",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-container-lowest": "#0e0e0e",
+                      "surface-container-low": "#1b1b1b",
+                      "surface-dim": "#000000",
+                      "primary-fixed-dim": "#c6c6c7",
+                      "secondary": "#adc6ff",
+                      "tertiary": "#ffffff",
+                      "on-secondary-container": "#e6ecff",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-primary": "#2f3131",
+                      "primary-fixed": "#e2e2e2",
+                      "outline": "#8e9192",
                       "steel-gray": "#94A3B8",
+                      "surface-variant": "#353535",
+                      "secondary-container": "#0566d9",
+                      "on-error": "#690005",
+                      "surface-tint": "#c6c6c7",
+                      "on-primary-fixed-variant": "#454747",
+                      "electric-blue": "#0033AD",
+                      "tertiary-container": "#e2e2e2",
+                      "on-primary-container": "#636565",
+                      "on-surface-variant": "#c4c7c8",
+                      "on-secondary-fixed": "#001a42",
+                      "on-surface": "#e2e2e2",
+                      "primary-container": "#e2e2e2",
                       "background": "#000000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "section-gap": "120px",
+                      "container-max": "1280px",
+                      "margin-x": "32px",
+                      "stack-lg": "24px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Sora"],
+                      "headline-lg": ["Sora"],
+                      "display-lg-mobile": ["Sora"],
+                      "headline-md": ["Sora"],
+                      "headline-sm": ["Sora"],
+                      "body-sm": ["Geist"],
+                      "label-md": ["Geist"],
+                      "body-md": ["Geist"],
+                      "body-lg": ["Geist"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}]
               }
             },
           },
@@ -44,53 +129,108 @@
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
-        .text-glow-m { text-shadow: 0 0 15px rgba(0, 51, 173, 0.6); }
+        .text-glow-m {
+            text-shadow: 0 0 15px rgba(0, 51, 173, 0.6);
+        }
+        
         .reveal {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, opacity;
         }
-        .reveal.active-reveal { opacity: 1; transform: translateY(0); }
+        .reveal.active-reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         .stagger-1 { transition-delay: 100ms; }
         .stagger-2 { transition-delay: 200ms; }
         .stagger-3 { transition-delay: 300ms; }
         .stagger-4 { transition-delay: 400ms; }
+
         @keyframes custom-spin {
             from { transform: translate(-50%, -50%) rotate(0deg); }
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
-        .animate-star { animation: custom-spin 40s linear infinite; }
+        .animate-star {
+            animation: custom-spin 40s linear infinite;
+        }
         .hero-wheel-mask {
             mask-image: radial-gradient(circle, black 40%, transparent 70%);
             -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
         .timeline-line {
-            position: absolute; left: 24px; top: 0; bottom: 0; width: 2px;
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
             background: linear-gradient(to bottom, #0033AD, transparent);
         }
         .timeline-number {
-            position: absolute; left: 0; top: 0; width: 50px; height: 50px;
-            background: #000000; border: 2px solid #0033AD;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; color: #0033AD; box-shadow: 0 0 15px rgba(0, 51, 173, 0.4); z-index: 10;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: #000000;
+            border: 2px solid #0033AD;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #0033AD;
+            box-shadow: 0 0 15px rgba(0, 51, 173, 0.4);
+            z-index: 10;
         }
-        .timeline-step { position: relative; padding-left: 80px; margin-bottom: 60px; }
-        .faq-accordion .faq-item { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .timeline-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 60px;
+        }
+        .faq-accordion .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
         .faq-accordion .faq-question {
-            cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #ffffff;
+            cursor: pointer;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: #ffffff;
+            transition: color 0.3s ease;
         }
-        .faq-accordion .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: #94A3B8; font-size: 14px; }
-        .faq-accordion .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 24px; }
-        .faq-accordion .faq-item.active .faq-icon { transform: rotate(180deg); }
+        .faq-accordion .faq-question:hover {
+            color: #0033AD;
+        }
+        .faq-accordion .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: #94A3B8;
+            font-size: 14px;
+        }
+        .faq-accordion .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 24px;
+        }
+        .faq-accordion .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-accordion .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
-<body class="font-body-md selection:bg-electric-blue selection:text-white bg-background pb-24">
+<body class="font-body-md text-body-md selection:bg-electric-blue selection:text-white bg-background pb-24">
 
 <header class="fixed top-0 left-0 z-[100] w-full h-[60px] bg-background/65 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-6 transition-all duration-300" id="site-header">
-    <a href="index.html" class="font-display-lg text-sm tracking-[0.2em] uppercase font-extrabold liquid-chrome">ДИСК МАГИЯ АРТ</a>
+    <div class="font-display-lg text-sm tracking-[0.2em] uppercase font-extrabold liquid-chrome">ДИСК МАГИЯ АРТ</div>
     <div class="flex items-center gap-4">
         <a class="flex items-center gap-2 text-[10px] tracking-widest text-steel-gray bg-white/5 px-3 py-1.5 rounded-full border border-white/10 uppercase font-bold hover:text-electric-blue transition-colors" href="https://yandex.ru/maps/org/disk_magiya_art/212893045004" target="_blank">
             <span class="material-symbols-outlined text-[14px]">location_on</span>Домодедово
@@ -113,15 +253,15 @@
     </div>
     <div class="relative z-20 text-center px-margin-x mt-8 pb-24 w-full">
         <div class="reveal space-y-6 active-reveal">
-            <h2 class="text-label-md uppercase tracking-[0.5em] text-electric-blue text-glow-m font-bold">КАЖДЫЙ ДИСК — ПО ТЕХНОЛОГИИ</h2>
-            <h1 class="text-display-lg-mobile md:text-display-lg tracking-tight max-w-5xl mx-auto uppercase drop-shadow-2xl font-extrabold leading-[1.1]" style="color: #d1d5db;">
+            <h2 class="font-label-md text-label-md uppercase tracking-[0.5em] text-electric-blue text-glow-m font-bold">КАЖДЫЙ ДИСК — ПО ТЕХНОЛОГИИ</h2>
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tight max-w-5xl mx-auto uppercase drop-shadow-2xl font-extrabold leading-[1.1]" style="color: #d1d5db;">
                 ОТ ЛЮБОГО СОСТОЯНИЯ ДО ИДЕАЛА:<br class="hidden md:block"/>
                 ОРИГИНАЛ ИЛИ РЕПЛИКА — НЕВАЖНО
             </h1>
             <div class="pt-8 flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center w-full">
-                <a class="block w-full max-w-md mx-auto group cursor-pointer" href="services.html">
+                <a class="block w-full max-w-md mx-auto group cursor-pointer" href="/services">
                     <div class="plaque-card px-10 py-4 !rounded-full transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_40px_rgba(0,51,173,0.4)] flex items-center justify-center">
-                        <span class="text-sm md:text-lg uppercase font-black tracking-[0.4em]" style="color: rgb(160, 169, 181); text-shadow: #0033AD 0px 0px 5px, #0033AD 0px 0px 10px, #0033AD 0px 0px 20px;">УСЛУГИ И ПРАЙС</span>
+                        <span class="text-surface-bright text-sm md:text-lg uppercase font-black tracking-[0.4em]" style="color: rgb(160, 169, 181); text-shadow: #0033AD 0px 0px 5px, #0033AD 0px 0px 10px, #0033AD 0px 0px 20px;">УСЛУГИ И ПРАЙС</span>
                     </div>
                 </a>
             </div>
@@ -133,14 +273,16 @@
 <section class="py-section-gap px-margin-x max-w-container-max mx-auto" id="services">
     <div class="flex flex-col items-center gap-8 text-center tracking-tighter">
         <div class="reveal text-white text-3xl md:text-5xl font-bold uppercase leading-none tracking-tighter">ВЫЦВЕТШАЯ КРАСКА, СКОЛ, БИЕНИЕ РУЛЯ ?</div>
-        
-        <!-- Открытие модалки вместо редиректа -->
-        <button onclick="openQuizModal()" class="reveal block w-fit mx-auto py-4 group cursor-pointer border-none bg-transparent outline-none">
+        <a class="reveal block w-fit mx-auto py-4 group cursor-pointer quiz-trigger" href="/quiz">
             <div class="plaque-card px-10 py-4 !rounded-full transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_40px_rgba(0,51,173,0.4)]">
-                <h2 class="text-sm md:text-lg uppercase font-black tracking-[0.4em]" style="color: rgb(160, 169, 181); text-shadow: #0033AD 0px 0px 5px, #0033AD 0px 0px 10px, #0033AD 0px 0px 20px;">РАССЧИТАТЬ СТОИМОСТЬ В ТЕЛЕГРАМ</h2>
+                <h2 class="text-surface-bright text-sm md:text-lg uppercase font-black tracking-[0.4em]" style="color: rgb(160, 169, 181); text-shadow: #0033AD 0px 0px 5px, #0033AD 0px 0px 10px, #0033AD 0px 0px 20px;">У НАС ЕСТЬ РЕШЕНИЕ</h2>
             </div>
-        </button>
-
+        </a>
+        <div class="reveal hidden w-fit mx-auto py-4 quiz-success-plaque">
+            <div class="plaque-card px-8 py-5 !rounded-full shadow-[0_0_30px_rgba(255,255,255,0.1)] border border-white/20">
+                <h2 class="text-sm md:text-base uppercase font-bold tracking-[0.2em] liquid-chrome">Ваша заявка уже принята.<br/>Мы свяжемся с вами в ближайшее время.</h2>
+            </div>
+        </div>
         <div class="reveal text-steel-gray text-xs md:text-sm font-bold uppercase tracking-[0.5em] opacity-60">
             БЕЗ КОМПРОМИССОВ В КАЧЕСТВЕ
         </div>
@@ -151,26 +293,26 @@
 <section class="py-section-gap px-margin-x">
     <div class="max-w-container-max mx-auto">
         <div class="reveal text-center mb-16 space-y-4">
-            <h2 class="text-label-md uppercase tracking-[0.4em] text-electric-blue font-bold">95% ЛЮДЕЙ НЕ ПОНИМАЮТ РАЗНИЦЫ</h2>
-            <h3 class="text-display-lg-mobile md:text-[42px] uppercase font-extrabold tracking-tight liquid-chrome">ГЛАВНЫЕ ОТЛИЧИЯ ПОРОШКА ОТ ЖИДКОЙ КРАСКИ</h3>
+            <h2 class="font-label-md text-label-md uppercase tracking-[0.4em] text-electric-blue font-bold">95% ЛЮДЕЙ НЕ ПОНИМАЮТ РАЗНИЦЫ</h2>
+            <h3 class="font-display-lg text-display-lg-mobile md:text-[42px] uppercase font-extrabold tracking-tight liquid-chrome">ГЛАВНЫЕ ОТЛИЧИЯ ПОРОШКА ОТ ЖИДКОЙ КРАСКИ</h3>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
             <div class="reveal plaque-card p-10 space-y-4 group relative overflow-hidden !rounded-2xl">
                 <div class="absolute -right-4 -bottom-4 text-8xl font-black opacity-5 text-white pointer-events-none">01</div>
-                <div class="text-electric-blue uppercase tracking-widest font-bold">Стойкость &amp; Толщина</div>
-                <h4 class="uppercase font-bold text-white">Термокамера для запекания</h4>
+                <div class="font-label-md text-electric-blue uppercase tracking-widest font-bold">Стойкость &amp; Толщина</div>
+                <h4 class="font-headline-md uppercase font-bold text-white">Термокамера для запекания</h4>
                 <p class="text-steel-gray uppercase text-sm">Порошок полимеризуется в печи, создавая монолитную броню. Жидкая краска ложится тонким слоем и быстро истирается.</p>
             </div>
             <div class="reveal stagger-1 plaque-card p-10 space-y-4 group relative overflow-hidden border-electric-blue/20 !rounded-2xl">
                 <div class="absolute -right-4 -bottom-4 text-8xl font-black opacity-5 text-white pointer-events-none">02</div>
-                <div class="text-electric-blue uppercase tracking-widest font-bold">Защита от сколов</div>
-                <h4 class="uppercase font-bold text-white">Камни и пескоструй</h4>
+                <div class="font-label-md text-electric-blue uppercase tracking-widest font-bold">Защита от сколов</div>
+                <h4 class="font-headline-md uppercase font-bold text-white">Камни и пескоструй</h4>
                 <p class="text-steel-gray uppercase text-sm">Благодаря высокой плотности полимера покрытие держит удары камней на трассе. Жидкая краска скалывается моментально.</p>
             </div>
             <div class="reveal stagger-2 plaque-card p-10 space-y-4 group relative overflow-hidden !rounded-2xl">
                 <div class="absolute -right-4 -bottom-4 text-8xl font-black opacity-5 text-white pointer-events-none">03</div>
-                <div class="text-electric-blue uppercase tracking-widest font-bold">Химия &amp; Ультрафиолет</div>
-                <h4 class="uppercase font-bold text-white">Стойкость к реагентам</h4>
+                <div class="font-label-md text-electric-blue uppercase tracking-widest font-bold">Химия &amp; Ультрафиолет</div>
+                <h4 class="font-headline-md uppercase font-bold text-white">Стойкость к реагентам</h4>
                 <p class="text-steel-gray uppercase text-sm">Зимняя химия и палящее солнце не разрушают структуру. Обычная краска тускнеет, выцветает и вздувается от реагентов.</p>
             </div>
         </div>
@@ -182,52 +324,52 @@
     <div class="max-w-container-max mx-auto">
         <div class="reveal flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div class="max-w-2xl">
-                <h2 class="uppercase tracking-[0.4em] text-electric-blue mb-4 font-bold">ЭВОЛЮЦИЯ: ОТ ЭРОЗИИ К СОВЕРШЕНСТВУ</h2>
-                <h3 class="text-display-lg-mobile md:text-display-lg uppercase font-extrabold liquid-chrome">5 ШАГОВ К ЯРКОСТИ</h3>
+                <h2 class="font-label-md uppercase tracking-[0.4em] text-electric-blue mb-4 font-bold">ЭВОЛЮЦИЯ: ОТ ЭРОЗИИ К СОВЕРШЕНСТВУ</h2>
+                <h3 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase font-extrabold liquid-chrome">5 ШАГОВ К ЯРКОСТИ</h3>
             </div>
-            <p class="text-steel-gray md:text-right max-w-sm uppercase font-bold opacity-60">Безупречное заводское качество покрытия за 5 технологических циклов.</p>
+            <p class="font-body-lg text-steel-gray md:text-right max-w-sm uppercase font-bold opacity-60">Безупречное заводское качество покрытия за 5 технологических циклов.</p>
         </div>
         <div class="relative max-w-3xl mx-auto">
             <div class="timeline-line"></div>
-            <div class="gap-8 space-y-8">
-                <div class="reveal timeline-step cursor-pointer group" onclick="toggleTimeline(this)">
+            <div class="gap-8 space-y-8" id="timeline-container">
+                <div class="reveal timeline-step cursor-pointer group">
                     <div class="timeline-number group-hover:scale-110 transition-transform">01</div>
                     <div class="pl-4">
-                        <h4 class="text-electric-blue uppercase font-bold mb-1 transition-colors">ПРИЕМКА И ДИАГНОСТИКА</h4>
+                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ПРИЕМКА И ДИАГНОСТИКА</h4>
                         <p class="text-white text-sm uppercase font-semibold">Оценка геометрии и дефектов.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm">Тщательный осмотр каждого диска на наличие трещин, сколов и глубоких царапин. Проверка осевого и радиального биения на высокоточном стенде.</div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed">Тщательный осмотр каждого диска на наличие трещин, сколов и глубоких царапин. Проверка осевого и радиального биения на высокоточном стенде для определения необходимости правки.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-1 timeline-step cursor-pointer group" onclick="toggleTimeline(this)">
+                <div class="reveal stagger-1 timeline-step cursor-pointer group">
                     <div class="timeline-number group-hover:scale-110 transition-transform">02</div>
                     <div class="pl-4">
-                        <h4 class="text-electric-blue uppercase font-bold mb-1 transition-colors">ХИМИЧЕСКАЯ СМЫВКА</h4>
+                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ХИМИЧЕСКАЯ СМЫВКА</h4>
                         <p class="text-white text-sm uppercase font-semibold">Удаление старого ЛКП в спецсоставах.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm">Щадящий метод, который позволяет мягко провести пескоструйную обработку без повреждения структуры металла.</div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed">Это щадящий метод который позволяет мягко провести пескоструйную обработку, без повреждения структуры металла.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-2 timeline-step cursor-pointer group" onclick="toggleTimeline(this)">
+                <div class="reveal stagger-2 timeline-step cursor-pointer group">
                     <div class="timeline-number group-hover:scale-110 transition-transform">03</div>
                     <div class="pl-4">
-                        <h4 class="text-electric-blue uppercase font-bold mb-1 transition-colors">ПРАВКА ГЕОМЕТРИИ</h4>
+                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ПРАВКА ГЕОМЕТРИИ</h4>
                         <p class="text-white text-sm uppercase font-semibold">Устранение биения на стендах.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm">Восстановление идеальной окружности диска гидравлическими прессами и локальным нагревом.</div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed">Восстановление идеальной окружности диска. Мы используем гидравлические прессы и локальный нагрев, чтобы вернуть заводские параметры без создания внутренних напряжений в сплаве.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-3 timeline-step cursor-pointer group" onclick="toggleTimeline(this)">
+                <div class="reveal stagger-3 timeline-step cursor-pointer group">
                     <div class="timeline-number group-hover:scale-110 transition-transform">04</div>
                     <div class="pl-4">
-                        <h4 class="text-electric-blue uppercase font-bold mb-1 transition-colors">ПОРОШКОВАЯ ПОКРАСКА</h4>
+                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ПОРОШКОВАЯ ПОКРАСКА</h4>
                         <p class="text-white text-sm uppercase font-semibold">Полимеризация в печи при 200°C.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm">Нанесение электростатического порошка и его запекание в профессиональной печи для создания сверхпрочного полимера.</div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed">Нанесение электростатического порошка и его запекание в профессиональной печи. В результате образуется сверхпрочный полимерный слой, устойчивый к сколам, химии и перепадам температур.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-4 timeline-step cursor-pointer group" onclick="toggleTimeline(this)">
+                <div class="reveal stagger-4 timeline-step cursor-pointer group">
                     <div class="timeline-number group-hover:scale-110 transition-transform">05</div>
                     <div class="pl-4">
-                        <h4 class="text-electric-blue uppercase font-bold mb-1 transition-colors">КОНТРОЛЬ КАЧЕСТВА</h4>
+                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">КОНТРОЛЬ КАЧЕСТВА</h4>
                         <p class="text-white text-sm uppercase font-semibold">Финальная проверка и выдача.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm">Проверка равномерности покрытия и упаковка готового изделия.</div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed">Проверка равномерности покрытия, отсутствия пылинок и шагрени. Бережная упаковка готового изделия для передачи клиенту.</div>
                     </div>
                 </div>
             </div>
@@ -235,65 +377,70 @@
     </div>
 </section>
 
-<!-- Stats Section -->
+<!-- Metrics / Stats Section -->
 <section class="py-section-gap px-margin-x border-y border-white/5">
     <div class="max-w-container-max mx-auto">
         <div class="reveal text-center mb-16">
-            <h2 class="uppercase tracking-[0.4em] text-electric-blue mb-2 font-bold">НАШИ ПОКАЗАТЕЛИ</h2>
+            <h2 class="font-label-md uppercase tracking-[0.4em] text-electric-blue mb-2 font-bold">НАШИ ПОКАЗАТЕЛИ</h2>
             <p class="text-steel-gray uppercase font-bold text-sm">Надёжность и скорость — фундамент нашего сервиса</p>
         </div>
         <div class="flex flex-col gap-6 items-center max-w-2xl mx-auto">
             <div class="reveal plaque-card w-full p-12 text-center space-y-2 !rounded-[2.5rem]">
-                <div class="text-[56px] md:text-[72px] font-black liquid-chrome count-up" data-suffix="+" data-target="3000">3 000+</div>
-                <div class="text-steel-gray uppercase tracking-[0.2em] font-bold text-xs">выполненных сделок и довольных клиентов</div>
+                <div class="font-display-lg text-[56px] md:text-[72px] font-black liquid-chrome count-up" data-suffix="+" data-target="3000">3 000+</div>
+                <div class="font-body-sm text-steel-gray uppercase tracking-[0.2em] font-bold">выполненных сделок и довольных клиентов</div>
             </div>
             <div class="reveal stagger-1 plaque-card w-full p-12 text-center space-y-2 !rounded-[2.5rem]">
-                <div class="text-[56px] md:text-[72px] font-black liquid-chrome count-up" data-suffix=" ЛЕТ" data-target="7">7 ЛЕТ</div>
-                <div class="text-steel-gray uppercase tracking-[0.2em] font-bold text-xs">беспрерывного опыта и работы на результат</div>
+                <div class="font-display-lg text-[56px] md:text-[72px] font-black liquid-chrome count-up" data-suffix=" ЛЕТ" data-target="7">7 ЛЕТ</div>
+                <div class="font-body-sm text-steel-gray uppercase tracking-[0.2em] font-bold">беспрерывного опыта и работы на результат</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Gallery Section -->
+<!-- Gallery / Trust Section -->
 <section class="py-section-gap overflow-hidden">
     <div class="max-w-container-max mx-auto px-margin-x mb-16 text-center">
-        <h2 class="reveal text-display-lg-mobile md:text-[64px] uppercase font-black tracking-widest liquid-chrome">НАМ ДОВЕРЯЮТ</h2>
+        <h2 class="reveal font-display-lg text-display-lg-mobile md:text-[64px] uppercase font-black tracking-widest liquid-chrome">НАМ ДОВЕРЯЮТ</h2>
     </div>
     <div class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 px-margin-x pb-12" id="reviews-carousel">
         <div class="reveal flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 1" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.0.jpg"/>
+                <img alt="Review 1" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.0.jpg"/>
             </div>
         </div>
         <div class="reveal stagger-1 flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 2" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.1.jpg"/>
+                <img alt="Review 2" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.1.jpg"/>
             </div>
         </div>
         <div class="reveal stagger-2 flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 3" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.2.jpg"/>
+                <img alt="Review 3" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.2.jpg"/>
             </div>
         </div>
         <div class="reveal stagger-3 flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 4" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.3.jpg"/>
+                <img alt="Review 4" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карты2.3.jpg"/>
             </div>
         </div>
         <div class="reveal stagger-4 flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 5" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.5.jpg"/>
+                <img alt="Review 5" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.5.jpg"/>
             </div>
         </div>
         <div class="reveal flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 6" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.6.jpg"/>
+                <img alt="Review 6" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.6.jpg"/>
             </div>
         </div>
         <div class="reveal stagger-1 flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
             <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
-                <img alt="Работа 7" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.7.jpg"/>
+                <img alt="Review 7" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.7.jpg"/>
+            </div>
+        </div>
+        <div class="reveal stagger-2 flex-shrink-0 w-[85vw] md:w-[480px] snap-center">
+            <div class="plaque-card overflow-hidden rounded-3xl border-white/10 group relative">
+                <img alt="Review 8" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="images/карта2.8.jpg"/>
             </div>
         </div>
     </div>
@@ -302,201 +449,253 @@
 <!-- FAQ Section -->
 <section class="py-section-gap px-margin-x max-w-3xl mx-auto" id="faq">
     <div class="reveal text-center mb-12">
-        <h2 class="text-[32px] md:text-[48px] uppercase font-black tracking-widest liquid-chrome">ЧАСТЫЕ ВОПРОСЫ</h2>
+        <h2 class="font-display-lg text-[32px] md:text-[48px] uppercase font-black tracking-widest liquid-chrome">ЧАСТЫЕ ВОПРОСЫ</h2>
     </div>
     <div class="faq-accordion flex flex-col w-full bg-black border border-white/10 rounded-2xl overflow-hidden p-6 reveal">
-        <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-item cursor-pointer">
             <div class="faq-question">
                 <span>Нужно ли снимать резину перед покраской?</span>
                 <span class="material-symbols-outlined faq-icon">expand_more</span>
             </div>
             <div class="faq-answer">Да. Мы принимаем диски без шин.</div>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-item cursor-pointer">
             <div class="faq-question">
                 <span>Можно ли восстановить сильно поврежденный диск?</span>
                 <span class="material-symbols-outlined faq-icon">expand_more</span>
             </div>
-            <div class="faq-answer">
-                В большинстве случаев да. Мы устраняем сколы, вмятины, восьмерки и завариваем трещины аргоном.
-            </div>
+            <div class="faq-answer">В большинстве случаев да. Мы устраняем сколы, вмятины, восьмерки и даже завариваем трещины аргоном. Точную оценку даст мастер после осмотра.</div>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-item cursor-pointer">
             <div class="faq-question">
                 <span>Сколько времени занимает процесс покраски?</span>
                 <span class="material-symbols-outlined faq-icon">expand_more</span>
             </div>
-            <div class="faq-answer">
-                Полный цикл порошковой покраски с соблюдением всех технологий обычно занимает от 2 до 4 дней.
-            </div>
+            <div class="faq-answer">Полный цикл порошковой покраски с соблюдением всех технологий обычно занимает от 2 до 4 дней в зависимости от загруженности и состояния дисков.</div>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-item cursor-pointer">
             <div class="faq-question">
                 <span>Даете ли вы гарантию на покрытие?</span>
                 <span class="material-symbols-outlined faq-icon">expand_more</span>
             </div>
-            <div class="faq-answer">
-                Да, мы предоставляем гарантию до 3 лет на отсутствие отслоений и вздутий покрытия.
-            </div>
+            <div class="faq-answer">Да, мы предоставляем гарантию до 3 лет на отсутствие отслоений и вздутий покрытия при соблюдении правил эксплуатации.</div>
         </div>
+    </div>
+    <div class="reveal mt-16 text-center plaque-card p-8 !rounded-2xl border-white/10">
+        <h3 class="font-headline-sm uppercase font-bold text-white mb-4">Остались вопросы?</h3>
+        <p class="text-steel-gray text-sm mb-6">Не нашли ответ? Отправьте фотографию ваших дисков мы бесплатно оценим их состояние и предложим оптимальный вариант восстановления.</p>
+        <a class="inline-flex items-center justify-center px-8 py-4 bg-electric-blue text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-electric-blue/90 transition-all shadow-[0_0_20px_rgba(0,51,173,0.4)] gap-2" href="https://api.whatsapp.com/send/?phone=79891880288" target="_blank">
+            <span class="material-symbols-outlined text-[18px]">photo_camera</span> Отправить фото
+        </a>
+        <div aria-hidden="true" class="sr-only">Оценка состояния дисков по фото, бесплатная диагностика, реставрация и покраска дисков в Домодедово.</div>
     </div>
 </section>
 
-<!-- МОДАЛЬНОЕ ОКНО КВИЗА И ОТПРАВКИ В ТЕЛЕГРАМ -->
-<div id="quiz-modal" class="fixed inset-0 z-[200] hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="plaque-card w-full max-w-lg p-6 md:p-8 rounded-3xl relative border border-white/20">
-        <button onclick="closeQuizModal()" class="absolute top-4 right-4 text-steel-gray hover:text-white text-2xl font-bold">&times;</button>
-        <h3 class="text-xl md:text-2xl font-extrabold uppercase text-center mb-6 text-white">Расчет стоимости</h3>
-        
-        <form id="tg-quiz-form" onsubmit="sendToTelegram(event)" class="space-y-4">
-            <div>
-                <label class="block text-xs font-bold text-steel-gray uppercase mb-1">Радиус дисков</label>
-                <select id="quiz-radius" class="w-full bg-black/50 border border-white/20 rounded-xl p-3 text-white focus:border-electric-blue outline-none">
-                    <option value="R15 - R16">R15 - R16</option>
-                    <option value="R17 - R18">R17 - R18</option>
-                    <option value="R19 - R20">R19 - R20</option>
-                    <option value="R21+">R21+</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-xs font-bold text-steel-gray uppercase mb-1">Что нужно сделать?</label>
-                <select id="quiz-service" class="w-full bg-black/50 border border-white/20 rounded-xl p-3 text-white focus:border-electric-blue outline-none">
-                    <option value="Порошковая покраска">Порошковая покраска</option>
-                    <option value="Правка геометрии">Правка геометрии / Ремонт</option>
-                    <option value="Покраска + Ремонт">Покраска + Ремонт</option>
-                    <option value="Алмазная проточка">Алмазная проточка</option>
-                </select>
-            </div>
-            <div>
-                <label class="block text-xs font-bold text-steel-gray uppercase mb-1">Ваш номер телефона / Telegram</label>
-                <input type="text" id="quiz-contact" required placeholder="+7 (999) 000-00-00 или @username" class="w-full bg-black/50 border border-white/20 rounded-xl p-3 text-white focus:border-electric-blue outline-none"/>
-            </div>
-            
-            <button type="submit" id="submit-btn" class="w-full py-4 bg-electric-blue text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-electric-blue/90 transition-all shadow-[0_0_20px_rgba(0,51,173,0.4)] mt-4">
-                ОТПРАВИТЬ ЗАЯВКУ
-            </button>
-        </form>
-        <div id="quiz-success" class="hidden text-center py-8 space-y-4">
-            <span class="material-symbols-outlined text-5xl text-green-500">check_circle</span>
-            <h4 class="text-xl font-bold uppercase text-white">Заявка принята!</h4>
-            <p class="text-steel-gray text-sm">Мы уже получили твое сообщение и свяжемся в ближайшее время.</p>
-        </div>
-    </div>
-</div>
-
-<!-- РОДНОЙ ПОДВАЛ (ФУТЕР) -->
-<footer class="w-full pt-16 pb-36 px-6 border-t border-white/10 bg-black font-body text-steel-gray text-center box-border">
-    <div class="max-w-[800px] mx-auto flex flex-col items-center gap-10">
+<!-- Footer -->
+<footer style="width: 100%; padding: 60px 20px 140px 20px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #000000; font-family: 'Geist', sans-serif; color: #94A3B8; text-align: center; box-sizing: border-box;">
+    <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 40px;">
         <div>
-            <div class="text-lg md:text-xl tracking-[0.2em] uppercase font-extrabold liquid-chrome mb-4">ДИСК МАГИЯ АРТ</div>
-            <p class="text-sm leading-relaxed text-steel-gray max-w-[400px] mx-auto font-semibold">Колёса это история автомобиля. Мы восстанавливаем идеалы, превосходя ожидания</p>
+            <div class="font-display-lg text-lg md:text-xl tracking-[0.2em] uppercase font-extrabold liquid-chrome mb-4">ДИСК МАГИЯ АРТ</div>
+            <p style="font-size: 14px; line-height: 1.6; color: #94A3B8; max-width: 400px; margin: 0 auto; font-weight: 500;">Колёса это история автомобиля. Мы восстанавливаем идеалы, превосходя ожидания</p>
         </div>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a class="text-steel-gray hover:text-white transition-colors text-xs uppercase font-bold tracking-widest" href="https://api.whatsapp.com/send/?phone=79891880288" target="_blank">WhatsApp</a>
-            <a class="text-steel-gray hover:text-white transition-colors text-xs uppercase font-bold tracking-widest" href="https://t.me/Discmagicart" target="_blank">Telegram (Чат)</a>
-            <a class="text-steel-gray hover:text-white transition-colors text-xs uppercase font-bold tracking-widest" href="https://t.me/discmag" target="_blank">Telegram (Канал)</a>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 24px;">
+            <a href="https://api.whatsapp.com/send/?phone=79891880288" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">chat</span>WhatsApp</a>
+            <a href="https://t.me/Discmagicart" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">send</span>Telegram (Чат)</a>
+            <a href="https://t.me/discmag" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">notifications</span>Telegram (Канал)</a>
+            <a href="https://youtube.com/@tgkdiscmag" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">play_circle</span>YouTube</a>
+            <a href="https://www.instagram.com/discmagicart" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">photo_camera</span>Instagram</a>
+            <a href="https://pin.it/6cihQcuIW" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">push_pin</span>Pinterest</a>
+            <a href="https://www.tiktok.com/@discmagic" style="color: #94A3B8; text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.3s; display: flex; align-items: center; gap: 6px;" target="_blank"><span class="material-symbols-outlined" style="font-size: 18px;">movie</span>TikTok</a>
         </div>
-        <div class="border-t border-white/5 pt-8 w-full">
-            <div class="text-xs text-white/40 font-mono">© 2026 DISC MAGIC ART. Все права защищены.</div>
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 30px; width: 100%;">
+            <p style="font-size: 12px; line-height: 1.5; color: #6c757d; margin: 0 0 16px 0; max-width: 600px; margin-left: auto; margin-right: auto;">Вся информация о ценах и услугах, представленная на сайте, носит ознакомительный характер и не является публичной офертой. Для получения точной стоимости обращайтесь к менеджеру.</p>
+            <div style="font-size: 12px; color: #6c757d; letter-spacing: 0.5px;">© 2026 DISC MAGIC ART. Все права защищены.</div>
         </div>
     </div>
 </footer>
 
-<nav class="fixed bottom-0 left-0 z-[100] w-full bg-black/80 backdrop-blur-xl border-t border-white/10 px-4 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.5)] py-2">
-    <a class="flex flex-col items-center gap-1 group" href="index.html">
-        <span class="material-symbols-outlined text-2xl text-steel-gray">home</span>
+<nav class="fixed bottom-0 left-0 z-[100] w-full bg-surface-container-lowest/80 backdrop-blur-xl border-t border-white/10 px-4 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.5)] py-1.5">
+    <a class="flex flex-col items-center gap-1 group" href="#">
+        <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">home</span>
         <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Главная</span>
     </a>
-    <a class="flex flex-col items-center gap-1 group" href="services.html">
-        <span class="material-symbols-outlined text-2xl text-steel-gray">build</span>
+    <a class="flex flex-col items-center gap-1 group" href="#services">
+        <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">build</span>
         <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Услуги</span>
     </a>
-    <button class="flex flex-col items-center gap-1 group bg-transparent border-none p-0 cursor-pointer" onclick="openQuizModal()">
-        <span class="material-symbols-outlined text-2xl text-steel-gray">calculate</span>
-        <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Квиз</span>
-    </button>
+    <a class="flex flex-col items-center gap-1 group" href="https://api.whatsapp.com/send/?phone=79891880288" target="_blank">
+        <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">chat</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">WhatsApp</span>
+    </a>
     <a class="flex flex-col items-center gap-1 group" href="https://t.me/Discmagicart" target="_blank">
-        <span class="material-symbols-outlined text-2xl text-steel-gray">send</span>
+        <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">send</span>
         <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Telegram</span>
+    </a>
+    <a class="flex flex-col items-center gap-1 group" href="https://t.me/discmag" target="_blank">
+        <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">notifications</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Канал</span>
     </a>
 </nav>
 
+<!-- Cookie Consent Banner -->
+<div class="fixed bottom-[100px] left-1/2 -translate-x-1/2 w-[90%] max-w-[600px] z-[9999] bg-background/95 backdrop-blur-md border border-electric-blue/30 rounded-2xl p-6 hidden shadow-[0_10px_40px_rgba(0,0,0,0.8)] transition-all duration-400 font-['Sora']" id="cookie-banner">
+    <div class="flex flex-col gap-4 items-start w-full">
+        <div class="flex items-center gap-2">
+            <span class="text-xl">🍪</span>
+            <span class="text-sm font-semibold text-white">Мы используем куки</span>
+        </div>
+        <p class="text-[13px] leading-relaxed text-steel-gray m-0">Мы используем куки для анализа трафика, чтобы улучшать работу сайта. Продолжая пользоваться сайтом, вы соглашаетесь с этим.</p>
+        <div class="flex gap-3 w-full">
+            <button class="flex-1 py-3 px-5 bg-electric-blue border-none rounded-xl text-white text-sm font-semibold cursor-pointer transition-all duration-300 shadow-[0_0_15px_rgba(0,51,173,0.2)] hover:brightness-110" onclick="acceptCookies()">Принять</button>
+            <button class="py-3 px-5 bg-transparent border border-white/10 rounded-xl text-steel-gray text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-white/5" onclick="declineCookies()">Отклонить</button>
+        </div>
+    </div>
+</div>
+
 <script>
-    // НАСТРОЙКИ ТЕЛЕГРАМ БОТА
-    const TELEGRAM_BOT_TOKEN = "ТВОЙ_ТОКЕН_БОТА"; 
-    const TELEGRAM_CHAT_ID = "ТВОЙ_CHAT_ID";
+    document.addEventListener('DOMContentLoaded', () => {
+        // Init Cookies
+        if (!localStorage.getItem('cookies_accepted') && !localStorage.getItem('cookies_declined')) {
+            setTimeout(() => {
+                const banner = document.getElementById('cookie-banner');
+                if(banner) {
+                    banner.classList.remove('hidden');
+                    banner.classList.add('flex');
+                }
+            }, 500);
+        }
 
-    function openQuizModal() {
-        document.getElementById('quiz-modal').classList.remove('hidden');
+        // Init Scroll Reveal
+        initReveal();
+        
+        // Init Header Scroll
+        initHeader();
+
+        // Init Timeline Accordion
+        initTimeline();
+
+        // FAQ Toggle
+        initFAQ();
+
+        // Quiz completion check
+        if (sessionStorage.getItem('quiz_completed') === 'true') {
+            const triggers = document.querySelectorAll('.quiz-trigger');
+            const plaques = document.querySelectorAll('.quiz-success-plaque');
+            
+            triggers.forEach(el => el.classList.add('hidden'));
+            plaques.forEach(el => el.classList.remove('hidden'));
+        }
+    });
+
+    function acceptCookies() {
+        localStorage.setItem('cookies_accepted', 'true');
+        closeCookieBanner();
+    }
+    
+    function declineCookies() {
+        localStorage.setItem('cookies_declined', 'true');
+        closeCookieBanner();
     }
 
-    function closeQuizModal() {
-        document.getElementById('quiz-modal').classList.add('hidden');
-    }
-
-    function toggleTimeline(element) {
-        const all = element.parentElement.querySelectorAll('.accordion-content');
-        const current = element.querySelector('.accordion-content');
-        const isOpen = !current.classList.contains('hidden');
-        all.forEach(el => el.classList.add('hidden'));
-        if(!isOpen) current.classList.remove('hidden');
-    }
-
-    async function sendToTelegram(event) {
-        event.preventDefault();
-        const radius = document.getElementById('quiz-radius').value;
-        const service = document.getElementById('quiz-service').value;
-        const contact = document.getElementById('quiz-contact').value;
-        const btn = document.getElementById('submit-btn');
-
-        btn.innerText = "ОТПРАВКА...";
-        btn.disabled = true;
-
-        const text = `🔥 *НОВАЯ ЗАЯВКА С САЙТА!*\n\n` +
-                     `📐 *Размер:* ${radius}\n` +
-                     `🛠 *Услуга:* ${service}\n` +
-                     `📞 *Контакты:* ${contact}`;
-
-        try {
-            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: text,
-                    parse_mode: 'Markdown'
-                })
-            });
-
-            if (response.ok) {
-                document.getElementById('tg-quiz-form').classList.add('hidden');
-                document.getElementById('quiz-success').classList.remove('hidden');
-            } else {
-                alert('Ошибка при отправке! Проверьте токен и chat_id бота.');
-            }
-        } catch (e) {
-            alert('Ошибка сети! Не удалось отправить заявку.');
-        } finally {
-            btn.innerText = "ОТПРАВИТЬ ЗАЯВКУ";
-            btn.disabled = false;
+    function closeCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        if(banner) {
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateX(-50%) translateY(20px)';
+            setTimeout(() => {
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+            }, 400);
         }
     }
 
     function initReveal() {
         const reveals = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active-reveal');
+                    
+                    const counters = entry.target.querySelectorAll('.count-up');
+                    counters.forEach(counter => {
+                        if (!counter.dataset.counted) {
+                            animateValue(counter);
+                            counter.dataset.counted = "true";
+                        }
+                    });
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
+
         reveals.forEach(el => observer.observe(el));
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-        initReveal();
-    });
+    function animateValue(obj) {
+        const targetValue = parseInt(obj.dataset.target);
+        const suffix = obj.dataset.suffix || "";
+        const duration = 2500;
+        let startTimestamp = null;
+        
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const currentCount = Math.floor(easedProgress * targetValue);
+            
+            obj.innerHTML = currentCount.toLocaleString('ru-RU') + suffix;
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function initHeader() {
+        const header = document.getElementById('site-header');
+        if(!header) return;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-background/95', 'h-[52px]', 'shadow-2xl');
+                header.classList.remove('bg-background/65', 'h-[60px]');
+            } else {
+                header.classList.add('bg-background/65', 'h-[60px]');
+                header.classList.remove('bg-background/95', 'h-[52px]', 'shadow-2xl');
+            }
+        }, { passive: true });
+    }
+
+    function initTimeline() {
+        const steps = document.querySelectorAll('.timeline-step');
+        steps.forEach(step => {
+            step.addEventListener('click', () => {
+                const content = step.querySelector('.accordion-content');
+                const isHidden = content.classList.contains('hidden');
+                
+                document.querySelectorAll('.timeline-step .accordion-content').forEach(el => {
+                    el.classList.add('hidden');
+                });
+
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                }
+            });
+        });
+    }
+
+    function initFAQ() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    }
 </script>
 </body>
 </html>
