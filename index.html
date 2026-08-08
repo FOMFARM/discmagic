@@ -170,7 +170,7 @@
         .timeline-number {
             position: absolute;
             left: 0;
-            top: 0;
+            top: 24px;
             width: 50px;
             height: 50px;
             background: #000000;
@@ -182,11 +182,20 @@
             color: #0033AD;
             box-shadow: 0 0 15px rgba(0, 51, 173, 0.4);
             z-index: 10;
+            border-radius: 50%;
         }
         .timeline-step {
             position: relative;
             padding-left: 80px;
-            margin-bottom: 60px;
+            margin-bottom: 24px;
+        }
+        .timeline-step.active .plaque-card {
+            border-color: #0033AD;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.08), 0 0 30px rgba(0, 51, 173, 0.3);
+        }
+        .timeline-step.active .step-icon {
+            transform: rotate(180deg);
+            color: #0033AD;
         }
         .faq-accordion .faq-item {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -244,7 +253,7 @@
             <img alt="Rotating Forged Star" class="w-full h-full object-contain" src="1zvezda.jpg"/>
         </div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] md:w-[160px] md:h-[160px] z-10">
-            <img alt="DMA Center Cap" class="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(0,0,0,0.8)]" src="2zvezdastatik.jpg" style="clip-path: circle(50%); border: 1px solid rgba(255, 255, 255, 0.1);"/>
+            <img alt="DMA Center Cap" class="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(0,0,0,0.8)]" src="1kelpstatik.jpg" style="clip-path: circle(50%); border: 1px solid rgba(255, 255, 255, 0.1);"/>
         </div>
     </div>
     <div class="relative z-20 text-center px-margin-x mt-8 pb-24 w-full">
@@ -327,45 +336,70 @@
         </div>
         <div class="relative max-w-3xl mx-auto">
             <div class="timeline-line"></div>
-            <div class="gap-8 space-y-8">
-                <div class="reveal timeline-step cursor-pointer group" onclick="const all = this.parentElement.querySelectorAll('.accordion-content'); const current = this.querySelector('.accordion-content'); const isOpen = !current.classList.contains('hidden'); all.forEach(el => el.classList.add('hidden')); if(!isOpen) current.classList.remove('hidden');">
-                    <div class="timeline-number group-hover:scale-110 transition-transform">01</div>
-                    <div class="pl-4">
-                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ПРИЕМКА И ДИАГНОСТИКА</h4>
-                        <p class="text-white text-sm uppercase font-semibold">Оценка геометрии и дефектов.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">Тщательный осмотр каждого диска на наличие трещин, сколов и глубоких царапин. Проверка осевого и радиального биения на высокоточном стенде для определения необходимости правки.</div>
+            <div class="space-y-6" id="steps-accordion">
+                <div class="reveal timeline-step cursor-pointer group" onclick="toggleStep(this)">
+                    <div class="timeline-number transition-transform group-hover:scale-110">01</div>
+                    <div class="plaque-card p-6 !rounded-2xl transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors group-hover:text-white">ПРИЕМКА И ДИАГНОСТИКА</h4>
+                                <p class="text-white text-sm uppercase font-semibold">Оценка геометрии и дефектов.</p>
+                            </div>
+                            <span class="material-symbols-outlined step-icon text-electric-blue text-2xl transition-transform duration-300">expand_more</span>
+                        </div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/10 text-steel-gray text-sm leading-relaxed animate-in fade-in duration-300">Тщательный осмотр каждого диска на наличие трещин, сколов и глубоких царапин. Проверка осевого и радиального биения на высокоточном стенде для определения необходимости правки.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-1 timeline-step cursor-pointer group" onclick="const all = this.parentElement.querySelectorAll('.accordion-content'); const current = this.querySelector('.accordion-content'); const isOpen = !current.classList.contains('hidden'); all.forEach(el => el.classList.add('hidden')); if(!isOpen) current.classList.remove('hidden');">
-                    <div class="timeline-number group-hover:scale-110 transition-transform">02</div>
-                    <div class="pl-4">
-                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ХИМИЧЕСКАЯ СМЫВКА</h4>
-                        <p class="text-white text-sm uppercase font-semibold">Удаление старого ЛКП в спецсоставах.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">Это щадящий метод который позволяет мягко провести пескоструйную обработку, без повреждения структуры металла.</div>
+                <div class="reveal stagger-1 timeline-step cursor-pointer group" onclick="toggleStep(this)">
+                    <div class="timeline-number transition-transform group-hover:scale-110">02</div>
+                    <div class="plaque-card p-6 !rounded-2xl transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors group-hover:text-white">ХИМИЧЕСКАЯ СМЫВКА</h4>
+                                <p class="text-white text-sm uppercase font-semibold">Удаление старого ЛКП в спецсоставах.</p>
+                            </div>
+                            <span class="material-symbols-outlined step-icon text-electric-blue text-2xl transition-transform duration-300">expand_more</span>
+                        </div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/10 text-steel-gray text-sm leading-relaxed animate-in fade-in duration-300">Это щадящий метод который позволяет мягко провести пескоструйную обработку, без повреждения структуры металла.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-2 timeline-step cursor-pointer group" onclick="const all = this.parentElement.querySelectorAll('.accordion-content'); const current = this.querySelector('.accordion-content'); const isOpen = !current.classList.contains('hidden'); all.forEach(el => el.classList.add('hidden')); if(!isOpen) current.classList.remove('hidden');">
-                    <div class="timeline-number group-hover:scale-110 transition-transform">03</div>
-                    <div class="pl-4">
-                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ПРАВКА ГЕОМЕТРИИ</h4>
-                        <p class="text-white text-sm uppercase font-semibold">Устранение биения на стендах.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">Восстановление идеальной окружности диска. Мы используем гидравлические прессы и локальный нагрев, чтобы вернуть заводские параметры без создания внутренних напряжений в сплаве.</div>
+                <div class="reveal stagger-2 timeline-step cursor-pointer group" onclick="toggleStep(this)">
+                    <div class="timeline-number transition-transform group-hover:scale-110">03</div>
+                    <div class="plaque-card p-6 !rounded-2xl transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors group-hover:text-white">ПРАВКА ГЕОМЕТРИИ</h4>
+                                <p class="text-white text-sm uppercase font-semibold">Устранение биения на стендах.</p>
+                            </div>
+                            <span class="material-symbols-outlined step-icon text-electric-blue text-2xl transition-transform duration-300">expand_more</span>
+                        </div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/10 text-steel-gray text-sm leading-relaxed animate-in fade-in duration-300">Восстановление идеальной окружности диска. Мы используем гидравлические прессы и локальный нагрев, чтобы вернуть заводские параметры без создания внутренних напряжений в сплаве.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-3 timeline-step cursor-pointer group" onclick="const all = this.parentElement.querySelectorAll('.accordion-content'); const current = this.querySelector('.accordion-content'); const isOpen = !current.classList.contains('hidden'); all.forEach(el => el.classList.add('hidden')); if(!isOpen) current.classList.remove('hidden');">
-                    <div class="timeline-number group-hover:scale-110 transition-transform">04</div>
-                    <div class="pl-4">
-                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">ПОРОШКОВАЯ ПОКРАСКА</h4>
-                        <p class="text-white text-sm uppercase font-semibold">Полимеризация в печи при 200°C.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">Нанесение электростатического порошка и его запекание в профессиональной печи. В результате образуется сверхпрочный полимерный слой, устойчивый к сколам, химии и перепадам температур.</div>
+                <div class="reveal stagger-3 timeline-step cursor-pointer group" onclick="toggleStep(this)">
+                    <div class="timeline-number transition-transform group-hover:scale-110">04</div>
+                    <div class="plaque-card p-6 !rounded-2xl transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors group-hover:text-white">ПОРОШКОВАЯ ПОКРАСКА</h4>
+                                <p class="text-white text-sm uppercase font-semibold">Полимеризация в печи при 200°C.</p>
+                            </div>
+                            <span class="material-symbols-outlined step-icon text-electric-blue text-2xl transition-transform duration-300">expand_more</span>
+                        </div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/10 text-steel-gray text-sm leading-relaxed animate-in fade-in duration-300">Нанесение электростатического порошка и его запекание в профессиональной печи. В результате образуется сверхпрочный полимерный слой, устойчивый к сколам, химии и перепадам температур.</div>
                     </div>
                 </div>
-                <div class="reveal stagger-4 timeline-step cursor-pointer group" onclick="const all = this.parentElement.querySelectorAll('.accordion-content'); const current = this.querySelector('.accordion-content'); const isOpen = !current.classList.contains('hidden'); all.forEach(el => el.classList.add('hidden')); if(!isOpen) current.classList.remove('hidden');">
-                    <div class="timeline-number group-hover:scale-110 transition-transform">05</div>
-                    <div class="pl-4">
-                        <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors">КОНТРОЛЬ КАЧЕСТВА</h4>
-                        <p class="text-white text-sm uppercase font-semibold">Финальная проверка и выдача.</p>
-                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/5 text-steel-gray text-sm leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">Проверка равномерности покрытия, отсутствия пылинок и шагрени. Бережная упаковка готового изделия для передачи клиенту.</div>
+                <div class="reveal stagger-4 timeline-step cursor-pointer group" onclick="toggleStep(this)">
+                    <div class="timeline-number transition-transform group-hover:scale-110">05</div>
+                    <div class="plaque-card p-6 !rounded-2xl transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-headline-sm text-electric-blue uppercase font-bold mb-1 transition-colors group-hover:text-white">КОНТРОЛЬ КАЧЕСТВА</h4>
+                                <p class="text-white text-sm uppercase font-semibold">Финальная проверка и выдача.</p>
+                            </div>
+                            <span class="material-symbols-outlined step-icon text-electric-blue text-2xl transition-transform duration-300">expand_more</span>
+                        </div>
+                        <div class="accordion-content hidden mt-4 pt-4 border-t border-white/10 text-steel-gray text-sm leading-relaxed animate-in fade-in duration-300">Проверка равномерности покрытия, отсутствия пылинок и шагрени. Бережная упаковка готового изделия для передачи клиенту.</div>
                     </div>
                 </div>
             </div>
@@ -583,6 +617,23 @@
   }
 </script>
 <script>
+    function toggleStep(element) {
+        const accordionContainer = document.getElementById('steps-accordion');
+        const allSteps = accordionContainer.querySelectorAll('.timeline-step');
+        const currentContent = element.querySelector('.accordion-content');
+        const isCurrentlyOpen = !currentContent.classList.contains('hidden');
+
+        allSteps.forEach(step => {
+            step.classList.remove('active');
+            step.querySelector('.accordion-content').classList.add('hidden');
+        });
+
+        if (!isCurrentlyOpen) {
+            element.classList.add('active');
+            currentContent.classList.remove('hidden');
+        }
+    }
+
     function initReveal() {
         const reveals = document.querySelectorAll('.reveal');
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
