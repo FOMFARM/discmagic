@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="ru" style=""><head>
+<html class="dark" lang="ru" style="">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>УСЛУГИ И ПРАЙС - Discmagic.art</title>
@@ -127,7 +127,7 @@
             aspect-ratio: 3 / 4;
             display: flex;
             flex-direction: column;
-            box-shadow: inset 0 0 20px rgba(192, 192, 192, 0.15); /* Silver glow */
+            box-shadow: inset 0 0 20px rgba(192, 192, 192, 0.15);
         }
 
         .glass-card:hover {
@@ -188,7 +188,6 @@
             box-shadow: 0 0 10px rgba(0, 51, 173, 0.1) inset;
         }
         
-        /* Flip Card Styles */
         .flip-container {
             perspective: 1000px;
             cursor: pointer;
@@ -249,7 +248,6 @@
             position: relative;
         }
 
-        /* Filter Styles */
         .filter-btn {
             transition: all 0.3s ease;
         }
@@ -265,7 +263,6 @@
                 });
             });
 
-            // Filtering Logic
             const filterBtns = document.querySelectorAll('.filter-btn');
             const sections = {
                 'all': document.querySelectorAll('.service-section'),
@@ -277,7 +274,6 @@
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // Update active state
                     filterBtns.forEach(b => {
                         b.classList.remove('active', 'border-electric-blue', 'text-electric-blue', 'bg-electric-blue/10');
                         b.classList.add('border-white/20', 'text-white/70');
@@ -287,12 +283,10 @@
 
                     const filter = btn.dataset.filter;
                     
-                    // Hide all
                     document.querySelectorAll('.service-section').forEach(sec => {
                         if (sec) sec.style.display = 'none';
                     });
                     
-                    // Show filtered
                     if (filter === 'all') {
                         sections['all'].forEach(sec => { if (sec) sec.style.display = 'block'; });
                     } else {
@@ -306,15 +300,11 @@
     </script>
 </head>
 <body class="font-body-md text-body-md antialiased md:pb-0 pt-24 bg-[#000000] pb-24">
-<!-- TopAppBar -->
-<!-- Mobile Header Fallback -->
 <header class="site-header-block"><style>.site-header-block { position: fixed; top: 0; left: 0; z-index: 100; width: 100%; height: 60px; background: rgba(11, 12, 16, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .header-logo-text { font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; background: linear-gradient(135deg, #ffffff 0%, #a0a5b5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; text-decoration: none; } .header-location-badge { font-size: 0.8rem; color: #b0b5c0; background: rgba(255, 255, 255, 0.04); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.08); white-space: nowrap; text-decoration: none;} @media (max-width: 480px) { .site-header-block { height: 52px; padding: 0 16px; } .header-logo-text { font-size: 0.9rem; } .header-location-badge { font-size: 0.72rem; padding: 4px 10px; } }</style><a class="header-logo-text" href="index.html">ДИСК МАГИЯ АРТ</a><div class="flex items-center"><a class="header-location-badge" href="https://yandex.ru/maps/org/disk_magiya_art/212893045004?si=php25ag7h5erjfau8c7kqf79qw" target="_blank">Домодедово</a><a class="flex items-center justify-center w-8 h-8 ml-2 rounded-full bg-white/5 border border-white/10 text-white hover:brightness-125 transition-all" href="tel:+79891880288" title="Позвонить нам"><span class="material-symbols-outlined" style="font-size: 18px;">phone</span></a></div></header>
 <main class="max-w-container-max mx-auto px-5 md:px-margin-x">
-<!-- Page Title -->
 <section class="pt-16 pb-8 md:pt-24 md:pb-12 flex flex-col items-center justify-center text-center">
 <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg metallic-text mb-6 uppercase tracking-widest">УСЛУГИ И ПРАЙС</h1>
 <p class="font-body-lg text-body-lg text-steel-gray max-w-2xl mb-8">Премиальное обслуживание и восстановление автомобильных дисков. Инновационные технологии, абсолютная точность.</p>
-<!-- Filters -->
 <div class="flex flex-wrap justify-center gap-3 w-full">
 <button class="filter-btn active px-5 py-2 rounded-full border border-electric-blue text-electric-blue bg-electric-blue/10 hover:bg-electric-blue hover:text-white transition-colors uppercase font-label-md tracking-wider" data-filter="all">Все</button>
 <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-white/70 hover:border-electric-blue hover:text-electric-blue transition-colors uppercase font-label-md tracking-wider" data-filter="painting">Покраска</button>
@@ -323,6 +313,7 @@
 <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-white/70 hover:border-electric-blue hover:text-electric-blue transition-colors uppercase font-label-md tracking-wider" data-filter="details">Детали</button>
 </div>
 </section>
+
 <!-- Section 1: Покраска и покрытия -->
 <section class="mb-section-gap service-section" id="section-painting">
 <div class="flex items-center gap-4 mb-stack-lg">
@@ -337,7 +328,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Порошковая покраска" class="w-full h-full object-contain" src="витрина покраска4.jpg"/>
+<img alt="Порошковая покраска" class="w-full h-full object-contain" src="1kras.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -363,7 +354,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Сатиновый лак" class="w-full h-full object-contain" src="витрина сатин3.jpg"/>
+<img alt="Сатиновый лак" class="w-full h-full object-contain" src="2satin.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -389,7 +380,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Тонированный лак" class="w-full h-full object-contain" src="витрина тонировка.jpg"/>
+<img alt="Тонированный лак" class="w-full h-full object-contain" src="3ton.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -415,7 +406,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Кэнди-лак" class="w-full h-full object-contain" src="витрина кэнди.jpg"/>
+<img alt="Кэнди-лак" class="w-full h-full object-contain" src="4candy.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -441,7 +432,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Алюмохром" class="w-full h-full object-contain" src="витрина алюмохром2.jpg"/>
+<img alt="Алюмохром" class="w-full h-full object-contain" src="5alyma.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -467,7 +458,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Фальшхром" class="w-full h-full object-contain" src="витрина фальхром2.jpg"/>
+<img alt="Фальшхром" class="w-full h-full object-contain" src="6falsh.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -489,6 +480,7 @@
 </div>
 </div>
 </section>
+
 <!-- Section 2: Ремонт и восстановление -->
 <section class="mb-section-gap service-section" id="section-repair">
 <div class="flex items-center gap-4 mb-stack-lg flex-row-reverse">
@@ -503,7 +495,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Правка геометрии" class="w-full h-full object-contain" src="витрина правка.jpg"/>
+<img alt="Правка геометрии" class="w-full h-full object-contain" src="7pravka.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -529,7 +521,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Напыление ДИМЕТ" class="w-full h-full object-contain" src="экрана димет.jpg"/>
+<img alt="Напыление ДИМЕТ" class="w-full h-full object-contain" src="8dimet.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -555,7 +547,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Восстановление после коррозии" class="w-full h-full object-contain" src="витрина коррозия.jpg"/>
+<img alt="Восстановление после коррозии" class="w-full h-full object-contain" src="9kor.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -577,6 +569,7 @@
 </div>
 </div>
 </section>
+
 <!-- Section 3: Токарные работы -->
 <section class="mb-section-gap service-section" id="section-turning">
 <div class="flex items-center gap-4 mb-stack-lg">
@@ -591,7 +584,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Алмазная проточка канта" class="w-full h-full object-contain" src="плена кант3.jpg"/>
+<img alt="Алмазная проточка канта" class="w-full h-full object-contain" src="10kant.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -617,7 +610,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Алмазная проточка полная" class="w-full h-full object-contain" src="внутренняя компенсация.jpg"/>
+<img alt="Алмазная проточка полная" class="w-full h-full object-contain" src="11almz.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -643,7 +636,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Исправление закраины" class="w-full h-full object-contain" src="витрина закраина2.jpg"/>
+<img alt="Исправление закраины" class="w-full h-full object-contain" src="12zak.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -665,6 +658,7 @@
 </div>
 </div>
 </section>
+
 <!-- Section 4: Детали и доп. услуги -->
 <section class="mb-section-gap service-section" id="section-details">
 <div class="flex items-center gap-4 mb-stack-lg flex-row-reverse">
@@ -679,7 +673,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Покраска суппортов" class="w-full h-full object-contain" src="витрина суппорт.jpg"/>
+<img alt="Покраска суппортов" class="w-full h-full object-contain" src="13support.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -687,13 +681,13 @@
 <div class="card-content-wrapper bg-[#000000]">
 <h3 class="font-headline-sm text-headline-sm text-primary mb-2 line-clamp-2">Покраска суппортов</h3>
 <div class="mb-4"><span class="price-chip font-label-md text-label-md text-electric-blue px-3 py-1 rounded-full uppercase inline-block">от 10 000 ₽</span></div>
-<a class="neon-button w-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue py-3 rounded-lg font-label-md text-center uppercase tracking-widest hover:bg-electric-blue hover:text-white mt-auto" href="quiz.html">Рассчитать стоимость</a>
+<a class="neon-button w-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue py-3 rounded-lg font-label-md text-center uppercase tracking-widest hover:bg-electric-blue hover:text-white mt-auto" href="https://wa.me/79891880288" target="_blank">Написать в WhatsApp</a>
 </div>
 </div>
 <div class="flip-back">
-<div class="w-full flex-grow flex flex-col items-center justify-center space-y-4 pt-4"><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8" data-stitch-orig-opacity="0"><span class="text-primary block mb-1 font-headline-sm">Преимущества:</span>Стойкость к реагентам, повреждениям, УФ</p><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8" data-stitch-orig-opacity="0"><span class="text-primary block mb-1 font-headline-sm">Детали:</span>Химическая подготовка, нанесение грунта и полимера с запеканием.</p></div>
+<div class="w-full flex-grow flex flex-col items-center justify-center space-y-4 pt-4"><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8"><span class="text-primary block mb-1 font-headline-sm">Преимущества:</span>Стойкость к реагентам, повреждениям, УФ</p><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8"><span class="text-primary block mb-1 font-headline-sm">Детали:</span>Химическая подготовка, нанесение грунта и полимера с запеканием.</p></div>
 <div class="mt-auto pb-4 w-full">
-<a class="neon-button w-full bg-electric-blue border border-electric-blue text-white py-3 rounded-lg font-label-md text-center uppercase tracking-widest block" href="quiz.html">Рассчитать стоимость</a>
+<a class="neon-button w-full bg-electric-blue border border-electric-blue text-white py-3 rounded-lg font-label-md text-center uppercase tracking-widest block" href="https://wa.me/79891880288" target="_blank">Написать в WhatsApp</a>
 </div>
 </div>
 </div>
@@ -705,7 +699,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Покраска поводков дворников" class="w-full h-full object-contain" src="витрина дворник2.jpg"/>
+<img alt="Покраска поводков дворников" class="w-full h-full object-contain" src="14dvornik.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -713,13 +707,13 @@
 <div class="card-content-wrapper bg-[#000000]">
 <h3 class="font-headline-sm text-headline-sm text-primary mb-2 line-clamp-2">Покраска поводков дворников</h3>
 <div class="mb-4"><span class="price-chip font-label-md text-label-md text-electric-blue px-3 py-1 rounded-full uppercase inline-block">1 500 ₽</span></div>
-<a class="neon-button w-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue py-3 rounded-lg font-label-md text-center uppercase tracking-widest hover:bg-electric-blue hover:text-white mt-auto" href="quiz.html">Рассчитать стоимость</a>
+<a class="neon-button w-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue py-3 rounded-lg font-label-md text-center uppercase tracking-widest hover:bg-electric-blue hover:text-white mt-auto" href="https://wa.me/79891880288" target="_blank">Написать в WhatsApp</a>
 </div>
 </div>
 <div class="flip-back">
-<div class="w-full flex-grow flex flex-col items-center justify-center space-y-4 pt-4"><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8" data-stitch-orig-opacity="0"><span class="text-primary block mb-1 font-headline-sm">Преимущества:</span>Стойкость к реагентам, повреждениям, УФ</p><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8" data-stitch-orig-opacity="0"><span class="text-primary block mb-1 font-headline-sm">Детали:</span>Химическая подготовка, нанесение грунта и полимера с запеканием.</p></div>
+<div class="w-full flex-grow flex flex-col items-center justify-center space-y-4 pt-4"><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8"><span class="text-primary block mb-1 font-headline-sm">Преимущества:</span>Стойкость к реагентам, повреждениям, УФ</p><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8"><span class="text-primary block mb-1 font-headline-sm">Детали:</span>Химическая подготовка, нанесение грунта и полимера с запеканием.</p></div>
 <div class="mt-auto pb-4 w-full">
-<a class="neon-button w-full bg-electric-blue border border-electric-blue text-white py-3 rounded-lg font-label-md text-center uppercase tracking-widest block" href="quiz.html">Рассчитать стоимость</a>
+<a class="neon-button w-full bg-electric-blue border border-electric-blue text-white py-3 rounded-lg font-label-md text-center uppercase tracking-widest block" href="https://wa.me/79891880288" target="_blank">Написать в WhatsApp</a>
 </div>
 </div>
 </div>
@@ -731,7 +725,7 @@
 <div class="flip-inner">
 <div class="flip-front">
 <div class="card-image-wrapper">
-<img alt="Покраска выхлопных накладок" class="w-full h-full object-contain" src="витрина выхлоп.jpg"/>
+<img alt="Покраска выхлопных накладок" class="w-full h-full object-contain" src="15vihlop.jpg"/>
 <div class="absolute bottom-2 w-full flex justify-center opacity-50">
 <span class="material-symbols-outlined text-primary/70 animate-bounce">touch_app</span>
 </div>
@@ -739,13 +733,13 @@
 <div class="card-content-wrapper bg-[#000000]">
 <h3 class="font-headline-sm text-headline-sm text-primary mb-2 line-clamp-2">Покраска выхлопных накладок</h3>
 <div class="mb-4"><span class="price-chip font-label-md text-label-md text-electric-blue px-3 py-1 rounded-full uppercase inline-block">от 5 000 ₽</span></div>
-<a class="neon-button w-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue py-3 rounded-lg font-label-md text-center uppercase tracking-widest hover:bg-electric-blue hover:text-white mt-auto" href="quiz.html">Рассчитать стоимость</a>
+<a class="neon-button w-full bg-electric-blue/10 border border-electric-blue/30 text-electric-blue py-3 rounded-lg font-label-md text-center uppercase tracking-widest hover:bg-electric-blue hover:text-white mt-auto" href="https://wa.me/79891880288" target="_blank">Написать в WhatsApp</a>
 </div>
 </div>
 <div class="flip-back">
-<div class="w-full flex-grow flex flex-col items-center justify-center space-y-4 pt-4"><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8" data-stitch-orig-opacity="0"><span class="text-primary block mb-1 font-headline-sm">Преимущества:</span>Стойкость к реагентам, повреждениям, УФ</p><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8" data-stitch-orig-opacity="0"><span class="text-primary block mb-1 font-headline-sm">Детали:</span>Химическая подготовка, нанесение грунта и полимера с запеканием.</p></div>
+<div class="w-full flex-grow flex flex-col items-center justify-center space-y-4 pt-4"><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8"><span class="text-primary block mb-1 font-headline-sm">Преимущества:</span>Стойкость к реагентам, повреждениям, УФ</p><p class="font-body-md text-body-md md:font-body-lg md:text-body-lg text-steel-gray max-w-2xl mb-8"><span class="text-primary block mb-1 font-headline-sm">Детали:</span>Химическая подготовка, нанесение грунта и полимера с запеканием.</p></div>
 <div class="mt-auto pb-4 w-full">
-<a class="neon-button w-full bg-electric-blue border border-electric-blue text-white py-3 rounded-lg font-label-md text-center uppercase tracking-widest block" href="quiz.html">Рассчитать стоимость</a>
+<a class="neon-button w-full bg-electric-blue border border-electric-blue text-white py-3 rounded-lg font-label-md text-center uppercase tracking-widest block" href="https://wa.me/79891880288" target="_blank">Написать в WhatsApp</a>
 </div>
 </div>
 </div>
@@ -753,6 +747,7 @@
 </div>
 </div>
 </section>
+
 <!-- Conversion Block -->
 <section class="mb-section-gap">
 <div class="glass-card rounded-xl p-8 md:p-12 flex flex-col items-center justify-center text-center !aspect-auto" style="box-shadow: rgba(192, 192, 192, 0.3) 0px 0px 20px inset, rgba(0, 51, 173, 0.2) 0px 0px 30px inset;">
@@ -762,15 +757,16 @@
 </div>
 </section>
 </main>
+
 <!-- BottomNavBar (Mobile Only) -->
 <nav class="fixed bottom-0 left-0 z-[100] w-full bg-surface-container-lowest/80 backdrop-blur-xl border-t border-white/10 px-4 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.5)] py-1.5">
 <a class="flex flex-col items-center gap-1 group" href="index.html">
 <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">home</span>
 <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Главная</span>
 </a>
-<a class="flex flex-col items-center gap-1 group" href="#">
-<span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">build</span>
-<span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Услуги</span>
+<a class="flex flex-col items-center gap-1 group" href="services.html">
+<span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-electric-blue">build</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-electric-blue">Услуги</span>
 </a>
 <a class="flex flex-col items-center gap-1 group" href="https://api.whatsapp.com/send/?phone=79891880288" target="_blank">
 <span class="material-symbols-outlined text-2xl transition-transform group-hover:scale-110 text-steel-gray">chat</span>
@@ -785,4 +781,5 @@
 <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Канал</span>
 </a>
 </nav>
-</body></html>
+</body>
+</html>
