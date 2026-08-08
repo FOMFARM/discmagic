@@ -72,7 +72,8 @@
 
 <main class="min-h-screen pt-40 pb-section-gap px-margin-x flex flex-col items-center">
 <div class="absolute top-8 right-8 z-50">
-    <a class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-electric-blue/20 transition-all" href="/">
+    <!-- Кнопка крестика ведет на главную -->
+    <a class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-electric-blue/20 transition-all" href="index.html">
         <span class="material-symbols-outlined">close</span>
     </a>
 </div>
@@ -92,7 +93,7 @@
     </div>
 
     <form id="quiz-form">
-        <!-- Step 1: Disk State -->
+        <!-- Step 1: Disk State (БЕЗ автоперехода) -->
         <div class="step-active transition-all duration-500" id="step-1">
             <h2 class="font-headline-lg text-white mb-10 text-center">В каком состоянии ваши диски?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -164,7 +165,7 @@
             </div>
         </div>
 
-        <!-- Step 2: Diameter (R12 - R24) -->
+        <!-- Step 2: Diameter (R12 - R24) (С автопереходом) -->
         <div class="step-inactive transition-all duration-500" id="step-2">
             <h2 class="font-headline-lg text-white mb-10 text-center">Диаметр дисков (R)?</h2>
             <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4" id="radius-grid">
@@ -172,7 +173,7 @@
                     const radii = [12,13,14,15,16,17,18,19,20,21,22,23,24];
                     document.write(radii.map(r => `
                         <label class="cursor-pointer">
-                            <input type="radio" name="radius" value="R${r}" class="hidden peer">
+                            <input type="radio" name="radius" value="R${r}" class="hidden peer auto-next">
                             <div class="glass-card py-6 flex items-center justify-center font-display-lg text-headline-md text-steel-gray peer-checked:text-electric-blue peer-checked:border-electric-blue transition-all">
                                 R${r}
                             </div>
@@ -182,33 +183,33 @@
             </div>
         </div>
 
-        <!-- Step 3: Services -->
+        <!-- Step 3: Services (С автопереходом) -->
         <div class="step-inactive transition-all duration-500" id="step-3">
             <h2 class="font-headline-lg text-white mb-10 text-center">Дополнительные услуги?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <label class="cursor-pointer">
-                    <input class="hidden peer" name="service" type="checkbox" value="Алмазная проточка (ЧПУ)">
+                    <input class="hidden peer auto-next" name="service" type="checkbox" value="Алмазная проточка (ЧПУ)">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
                         <span class="font-headline-sm text-white">Алмазная проточка (ЧПУ)</span>
                         <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
                 </label>
                 <label class="cursor-pointer">
-                    <input class="hidden peer" name="service" type="checkbox" value="Покраска суппортов">
+                    <input class="hidden peer auto-next" name="service" type="checkbox" value="Покраска суппортов">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
                         <span class="font-headline-sm text-white">Покраска суппортов</span>
                         <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
                 </label>
                 <label class="cursor-pointer">
-                    <input class="hidden peer" name="service" type="checkbox" value="Сезонное хранение шин">
+                    <input class="hidden peer auto-next" name="service" type="checkbox" value="Сезонное хранение шин">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
                         <span class="font-headline-sm text-white">Сезонное хранение шин</span>
                         <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
                 </label>
                 <label class="cursor-pointer">
-                    <input class="hidden peer" name="service" type="checkbox" value="Срочный заказ">
+                    <input class="hidden peer auto-next" name="service" type="checkbox" value="Срочный заказ">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
                         <span class="font-headline-sm text-white">Срочный заказ</span>
                         <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
@@ -221,7 +222,7 @@
         <div class="step-inactive transition-all duration-500" id="step-4">
             <h2 class="font-headline-lg text-white mb-10 text-center">Ваши контактные данные</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-6">
                     <div class="relative">
                         <input class="w-full bg-transparent border-0 border-b border-surface-variant py-4 font-body-lg text-white focus:ring-0 placeholder:text-outline transition-all" name="name" placeholder="Ваше имя" required type="text">
                         <span class="material-symbols-outlined absolute right-0 top-4 text-steel-gray">person</span>
@@ -230,9 +231,35 @@
                         <input class="w-full bg-transparent border-0 border-b border-surface-variant py-4 font-body-lg text-white focus:ring-0 placeholder:text-outline transition-all" name="phone" placeholder="+7 (___) ___-__-__" required type="tel">
                         <span class="material-symbols-outlined absolute right-0 top-4 text-steel-gray">phone</span>
                     </div>
+
+                    <!-- Выбор способа связи -->
+                    <div class="flex flex-col gap-3 mt-2">
+                        <label class="font-body-sm text-steel-gray">Предпочтительный способ связи:</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="preferred_contact" value="Telegram" class="hidden peer" checked>
+                                <div class="glass-card py-3 px-2 text-center text-sm font-label-md text-white peer-checked:border-electric-blue peer-checked:bg-electric-blue/20 rounded-lg transition-all">
+                                    Telegram
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="preferred_contact" value="WhatsApp" class="hidden peer">
+                                <div class="glass-card py-3 px-2 text-center text-sm font-label-md text-white peer-checked:border-electric-blue peer-checked:bg-electric-blue/20 rounded-lg transition-all">
+                                    WhatsApp
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="preferred_contact" value="Телефонный звонок" class="hidden peer">
+                                <div class="glass-card py-3 px-2 text-center text-sm font-label-md text-white peer-checked:border-electric-blue peer-checked:bg-electric-blue/20 rounded-lg transition-all">
+                                    Звонок
+                                </div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="flex flex-col gap-4">
-                    <label class="w-full h-48 border-2 border-dashed border-surface-variant rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-electric-blue transition-colors group relative">
+                    <label class="w-full h-full min-h-[200px] border-2 border-dashed border-surface-variant rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-electric-blue transition-colors group relative p-4">
                         <span class="material-symbols-outlined text-4xl text-steel-gray mb-2 group-hover:text-electric-blue" id="photo-icon">add_a_photo</span>
                         <p class="font-label-md text-outline text-center px-4" id="photo-label">Загрузите фото дисков (опционально)</p>
                         <input class="hidden" name="disk_photo" id="disk_photo" type="file" accept="image/*">
@@ -241,30 +268,30 @@
             </div>
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="mt-16 flex justify-between items-center" id="navigation-container">
+        <!-- Navigation Buttons (Уменьшена кнопка Далее) -->
+        <div class="mt-12 flex justify-between items-center" id="navigation-container">
             <button class="hidden font-label-md text-steel-gray hover:text-white transition-colors flex items-center gap-2" id="prev-btn" type="button">
                 <span class="material-symbols-outlined">arrow_back</span> Назад
             </button>
-            <button class="neon-button ml-auto bg-primary text-on-primary px-12 py-5 font-label-md font-bold uppercase tracking-[0.2em] flex items-center gap-4" id="next-btn" type="button">
-                Далее <span class="material-symbols-outlined">arrow_forward</span>
+            <button class="neon-button ml-auto bg-primary text-on-primary px-8 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-sm flex items-center gap-2 rounded-lg" id="next-btn" type="button">
+                Далее <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </button>
-            <button class="hidden neon-button ml-auto bg-electric-blue text-white px-12 py-5 font-label-md font-bold uppercase tracking-[0.2em] neon-glow" id="submit-btn" type="submit">
+            <button class="hidden neon-button ml-auto bg-electric-blue text-white px-8 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-sm neon-glow rounded-lg" id="submit-btn" type="submit">
                 ПОЛУЧИТЬ РАСЧЕТ
             </button>
         </div>
     </form>
 
-    <!-- Thank You Screen -->
+    <!-- Thank You Screen (Уменьшена кнопка Вернуться на главную) -->
     <div class="hidden flex flex-col items-center text-center py-10 transition-all duration-700 opacity-0" id="thank-you-screen">
-        <div class="w-24 h-24 bg-electric-blue/20 rounded-full flex items-center justify-center mb-8 neon-glow">
-            <span class="material-symbols-outlined text-electric-blue text-6xl">check_circle</span>
+        <div class="w-20 h-20 bg-electric-blue/20 rounded-full flex items-center justify-center mb-6 neon-glow">
+            <span class="material-symbols-outlined text-electric-blue text-5xl">check_circle</span>
         </div>
-        <h2 class="font-display-lg text-headline-lg text-white mb-4">Спасибо! Ваша заявка принята</h2>
-        <p class="font-body-lg text-steel-gray mb-12">Мы пришлём расчет за 15 минут</p>
-        <button class="neon-button bg-primary text-on-primary px-10 py-4 font-label-md uppercase tracking-[0.2em]" onclick="window.location.reload()">
+        <h2 class="font-display-lg text-headline-lg text-white mb-3">Спасибо! Ваша заявка принята</h2>
+        <p class="font-body-lg text-steel-gray mb-8">Мы свяжемся с вами и пришлём расчет за 15 минут</p>
+        <a class="neon-button inline-block bg-primary text-on-primary px-6 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-xs rounded-lg hover:bg-white" href="index.html">
             Вернуться на главную
-        </button>
+        </a>
     </div>
 </div>
 </main>
@@ -274,8 +301,9 @@
 </footer>
 
 <script>
-// ВСТАВЬ СЮДА ССЫЛКУ НА СВОЙ ВЕБХУК
-const WEBHOOK_URL = 'ВАШ_WEBHOOK_URL_СЮДА';
+// Telegram Bot Config
+const TELEGRAM_BOT_TOKEN = '8512431019:AAHecetZH3dsg3nqzAhnBSxEop0dkfKQmHM';
+const TELEGRAM_CHAT_ID = '8512431019';
 
 let currentStep = 1;
 const totalSteps = 4;
@@ -357,9 +385,9 @@ prevBtn.addEventListener('click', () => {
     }
 });
 
-// Авто-переход при выборе radio
-quizForm.querySelectorAll('input[type="radio"]').forEach(radio => {
-    radio.addEventListener('change', () => {
+// Авто-переход ТОЛЬКО для элементов с классом auto-next (Шаг 2 и 3)
+quizForm.querySelectorAll('.auto-next').forEach(input => {
+    input.addEventListener('change', () => {
         setTimeout(() => {
             if(validateStep(currentStep) && currentStep < totalSteps) {
                 currentStep++;
@@ -369,7 +397,7 @@ quizForm.querySelectorAll('input[type="radio"]').forEach(radio => {
     });
 });
 
-// Индикация выбора файла
+// Иконка загруженного файла
 const fileInput = document.getElementById('disk_photo');
 fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
@@ -379,7 +407,7 @@ fileInput.addEventListener('change', (e) => {
     }
 });
 
-// Отправка на Webhook
+// Отправка формы в Telegram
 quizForm.addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -387,26 +415,47 @@ quizForm.addEventListener('submit', async function(e) {
     const selectedServices = [];
     quizForm.querySelectorAll('input[name="service"]:checked').forEach(cb => selectedServices.push(cb.value));
 
-    const payload = {
-        disk_state: formData.get('disk_state'),
-        radius: formData.get('radius'),
-        services: selectedServices,
-        name: formData.get('name'),
-        phone: formData.get('phone')
-    };
+    const text = `
+🔥 <b>НОВАЯ ЗАЯВКА НА РАСЧЕТ</b> 🔥
+
+🛠 <b>Состояние:</b> ${formData.get('disk_state') || 'Не указано'}
+📏 <b>Диаметр:</b> ${formData.get('radius') || 'Не указан'}
+🔧 <b>Услуги:</b> ${selectedServices.length > 0 ? selectedServices.join(', ') : 'Не выбраны'}
+
+👤 <b>Имя:</b> ${formData.get('name')}
+📞 <b>Телефон:</b> ${formData.get('phone')}
+💬 <b>Связь через:</b> ${formData.get('preferred_contact')}
+    `.trim();
 
     submitBtn.disabled = true;
     submitBtn.innerText = 'ОТПРАВКА...';
 
     try {
-        if (WEBHOOK_URL && WEBHOOK_URL !== 'ВАШ_WEBHOOK_URL_СЮДА') {
-            await fetch(WEBHOOK_URL, {
+        // 1. Отправка текстового сообщения в Telegram
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: text,
+                parse_mode: 'HTML'
+            })
+        });
+
+        // 2. Отправка фото в Telegram (если прикреплено)
+        const photoInput = document.getElementById('disk_photo');
+        if (photoInput.files.length > 0) {
+            const photoData = new FormData();
+            photoData.append('chat_id', TELEGRAM_CHAT_ID);
+            photoData.append('photo', photoInput.files[0]);
+
+            await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: photoData
             });
         }
 
+        // Переход на экран "Спасибо"
         quizForm.classList.add('hidden');
         document.getElementById('step-info').classList.add('hidden');
         document.getElementById('navigation-container').classList.add('hidden');
@@ -422,7 +471,7 @@ quizForm.addEventListener('submit', async function(e) {
 
     } catch (err) {
         console.error('Ошибка отправки:', err);
-        alert('Ошибка при отправке заявки. Проверьте соединение.');
+        alert('Произошла ошибка при отправке заявки. Проверьте соединение.');
         submitBtn.disabled = false;
         submitBtn.innerText = 'ПОЛУЧИТЬ РАСЧЕТ';
     }
