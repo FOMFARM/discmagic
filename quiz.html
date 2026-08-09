@@ -300,7 +300,6 @@
 </footer>
 
 <script>
-// URL нового Cloudflare Worker
 const WORKER_URL = 'https://fragrant-poetry-e584.verarijq.workers.dev/';
 
 let currentStep = 1;
@@ -396,67 +395,55 @@ quizForm.querySelectorAll('.auto-next').forEach(input => {
 
 const fileInput = document.getElementById('disk_photo');
 fileInput.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
+    if (e.target.files && e.target.files[0]) {
         document.getElementById('photo-label').innerText = `Файл выбран: ${e.target.files[0].name}`;
         document.getElementById('photo-icon').innerText = 'check_circle';
         document.getElementById('photo-icon').classList.add('text-electric-blue');
     }
 });
 
-// Отправка заявки через Cloudflare Worker в Telegram
 quizForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = new FormData(quizForm);
-    const selectedServices = [];
-    quizForm
-        .querySelectorAll('input[name="service"]:checked')
-        .forEach(function(cb) {
-            selectedServices.push(cb.value);
-        });
-    const payload = {
-        condition: formData.get('disk_state') || '',
-        diameter: formData.get('radius') || '',
-        services: selectedServices,
-        name: (formData.get('name') || '').trim(),
-        phone: (formData.get('phone') || '').trim(),
-        preferred_contact: formData.get('preferred_contact') || ''
-    };
-    if (!payload.name || !payload.phone) {
+    
+    const services = [];
+    quizForm.querySelectorAll('input[name="service"]:checked').forEach(cb => services.push(cb.value));
+    
+    formData.set('services', services.join(', '));
+    formData.set('condition', formData.get('disk_state') || '');
+    formData.set('diameter', formData.get('radius') || '');
+
+    const nameVal = (formData.get('name') || '').trim();
+    const phoneVal = (formData.get('phone') || '').trim();
+    if (!nameVal || !phoneVal) {
         alert('Введите имя и номер телефона');
         return;
     }
+
     submitBtn.disabled = true;
     submitBtn.innerText = 'ОТПРАВКА...';
+
     try {
         const response = await fetch(WORKER_URL, {
             method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
+            body: formData
         });
         const result = await response.json();
         if (!response.ok || !result.success) {
-            console.error('Ответ Worker:', result);
             throw new Error(result.error || 'Ошибка отправки заявки');
         }
+
         quizForm.classList.add('hidden');
         document.getElementById('step-info').classList.add('hidden');
         document.getElementById('navigation-container').classList.add('hidden');
         document.getElementById('progress-container').classList.add('hidden');
         thankYouScreen.classList.remove('hidden');
-        setTimeout(function() {
-            thankYouScreen.classList.replace('opacity-0', 'opacity-100');
-        }, 50);
+        setTimeout(() => thankYouScreen.classList.replace('opacity-0', 'opacity-100'), 50);
         quizHeader.style.opacity = '0.3';
-        window.scrollTo({
-            top: mainContainer.offsetTop - 100,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: mainContainer.offsetTop - 100, behavior: 'smooth' });
     } catch (err) {
         console.error('Ошибка отправки:', err);
-        alert('Не удалось отправить заявку. Попробуйте ещё раз.');
+        alert('Ошибка: ' + err.message);
         submitBtn.disabled = false;
         submitBtn.innerText = 'ПОЛУЧИТЬ РАСЧЕТ';
     }
