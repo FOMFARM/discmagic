@@ -1,1425 +1,466 @@
-[09.08.2026 19:34] ­­: <!DOCTYPE html>
+<!DOCTYPE html>
 <html class="dark" lang="ru">
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
 <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://fragrant-poetry-e584.verarijq.workers.dev/">
-
 <title>DISCMAGIC.ART | Расчет Реставрации</title>
-
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Geist:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
 <script id="tailwind-config">
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            "colors": {
-                "glass-border": "rgba(255, 255, 255, 0.15)",
-                "electric-blue": "#0033AD",
-                "steel-gray": "#94A3B8",
-                "surface-container": "#1f1f1f",
-                "surface-variant": "#353535",
-                "outline": "#8e9192",
-                "primary": "#ffffff",
-                "on-primary": "#2f3131"
-            },
-            "spacing": {
-                "section-gap": "120px",
-                "margin-x": "32px"
-            },
-            "fontFamily": {
-                "display-lg": ["Sora"],
-                "headline-sm": ["Sora"],
-                "headline-lg": ["Sora"],
-                "label-md": ["Geist"],
-                "body-lg": ["Geist"],
-                "body-sm": ["Geist"],
-                "headline-md": ["Sora"],
-                "display-lg-mobile": ["Sora"],
-                "body-md": ["Geist"]
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "glass-border": "rgba(255, 255, 255, 0.15)",
+                        "electric-blue": "#0033AD",
+                        "steel-gray": "#94A3B8",
+                        "surface-container": "#1f1f1f",
+                        "surface-variant": "#353535",
+                        "outline": "#8e9192",
+                        "primary": "#ffffff",
+                        "on-primary": "#2f3131"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "margin-x": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "headline-sm": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "headline-md": ["Sora"],
+                        "display-lg-mobile": ["Sora"],
+                        "body-md": ["Geist"]
+                    }
+                }
             }
         }
-    }
-}
 </script>
-
 <style>
-body {
-    background-color: #000000;
-    color: #e2e2e2;
-    overflow-x: hidden;
-}
-
-.glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card:hover {
-    border-color: #0033AD;
-    box-shadow:
-        0 0 20px rgba(0, 51, 173, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-.neon-glow {
-    filter: drop-shadow(0 0 8px rgba(0, 51, 173, 0.6));
-}
-
-.neon-button {
-    transition: all 0.3s ease;
-    box-shadow: 0 0 0 rgba(0, 51, 173, 0);
-}
-
-.neon-button:hover {
-    box-shadow: 0 0 25px rgba(0, 51, 173, 0.5);
-    transform: scale(1.02);
-}
-
-.reveal {
-    animation: revealUp 0.8s forwards;
-}
-
-@keyframes revealUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-input:focus {
-    outline: none;
-    border-bottom: 2px solid #0033AD !important;
-    filter: drop-shadow(0 0 5px rgba(0, 51, 173, 0.4));
-}
-
-.step-inactive {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    visibility: hidden;
-}
-
-.step-active {
-    opacity: 1;
-    pointer-events: auto;
-    position: relative;
-    visibility: visible;
-}
-
-.reveal-layer {
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.group:hover .reveal-layer {
-    opacity: 1;
-}
+        body { background-color: #000000; color: #e2e2e2; overflow-x: hidden; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: #0033AD;
+            box-shadow: 0 0 20px rgba(0, 51, 173, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+        .neon-glow { filter: drop-shadow(0 0 8px rgba(0, 51, 173, 0.6)); }
+        .neon-button { transition: all 0.3s ease; box-shadow: 0 0 0 rgba(0, 51, 173, 0); }
+        .neon-button:hover { box-shadow: 0 0 25px rgba(0, 51, 173, 0.5); transform: scale(1.02); }
+        .reveal { animation: revealUp 0.8s forwards; }
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        input:focus { outline: none; border-bottom: 2px solid #0033AD !important; filter: drop-shadow(0 0 5px rgba(0, 51, 173, 0.4)); }
+        .step-inactive { opacity: 0; pointer-events: none; position: absolute; visibility: hidden; }
+        .step-active { opacity: 1; pointer-events: auto; position: relative; visibility: visible; }
+        .reveal-layer { opacity: 0; transition: opacity 0.4s ease; }
+        .group:hover .reveal-layer { opacity: 1; }
 </style>
 </head>
-
 <body class="font-body-md">
 
 <main class="min-h-screen pt-40 pb-section-gap px-margin-x flex flex-col items-center">
-
 <div class="absolute top-8 right-8 z-50">
-    <a
-        class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-electric-blue/20 transition-all"
-        href="index.html"
-    >
+    <a class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-electric-blue/20 transition-all" href="index.html">
         <span class="material-symbols-outlined">close</span>
     </a>
 </div>
 
-<header
-    class="max-w-4xl w-full text-center mb-16 reveal"
-    id="quiz-header"
->
-    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6">
-        Узнайте стоимость реставрации ваших дисков за 1 минуту
-    </h1>
-
-    <p class="font-body-lg text-steel-gray">
-        Пройдите короткий опрос и получите точный расчет стоимости и сроков выполнения работ.
-    </p>
+<header class="max-w-4xl w-full text-center mb-16 reveal" id="quiz-header">
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6">Узнайте стоимость реставрации ваших дисков за 1 минуту</h1>
+    <p class="font-body-lg text-steel-gray">Пройдите короткий опрос и получите точный расчет стоимости и сроков выполнения работ.</p>
 </header>
 
-<div
-    class="w-full max-w-6xl glass-card p-10 rounded-xl relative overflow-hidden"
-    id="main-container"
->
-
-    <div
-[09.08.2026 19:34] ­­: class="absolute top-0 left-0 w-full h-1 bg-surface-container"
-        id="progress-container"
-    >
-        <div
-            class="h-full bg-electric-blue neon-glow transition-all duration-700"
-            id="progress-bar"
-            style="width: 25%;"
-        ></div>
+<div class="w-full max-w-6xl glass-card p-10 rounded-xl relative overflow-hidden" id="main-container">
+    <div class="absolute top-0 left-0 w-full h-1 bg-surface-container" id="progress-container">
+        <div class="h-full bg-electric-blue neon-glow transition-all duration-700" id="progress-bar" style="width: 25%;"></div>
     </div>
-
-    <div
-        class="flex justify-between items-center mb-12"
-        id="step-info"
-    >
-        <span
-            class="font-label-md text-electric-blue uppercase tracking-widest"
-            id="step-counter"
-        >
-            Шаг 1 из 4
-        </span>
-
-        <span
-            class="text-red-400 text-sm hidden"
-            id="error-msg"
-        >
-            Пожалуйста, сделайте выбор перед переходом!
-        </span>
+    <div class="flex justify-between items-center mb-12" id="step-info">
+        <span class="font-label-md text-electric-blue uppercase tracking-widest" id="step-counter">Шаг 1 из 4</span>
+        <span class="text-red-400 text-sm hidden" id="error-msg">Пожалуйста, сделайте выбор перед переходом!</span>
     </div>
 
     <form id="quiz-form">
-
-        <!-- STEP 1 -->
-
-        <div
-            class="step-active transition-all duration-500"
-            id="step-1"
-        >
-
-            <h2 class="font-headline-lg text-white mb-10 text-center">
-                В каком состоянии ваши диски?
-            </h2>
-
+        <!-- Step 1: Disk State -->
+        <div class="step-active transition-all duration-500" id="step-1">
+            <h2 class="font-headline-lg text-white mb-10 text-center">В каком состоянии ваши диски?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
                 <label class="cursor-pointer group relative">
-
-                    <input
-                        class="hidden peer"
-                        name="disk_state"
-                        type="radio"
-                        value="Сколы и царапины"
-                    >
-
+                    <input class="hidden peer" name="disk_state" type="radio" value="Сколы и царапины">
                     <div class="glass-card h-full p-6 flex flex-col peer-checked:border-electric-blue peer-checked:bg-white/5 relative overflow-hidden">
-
                         <div class="w-full h-48 mb-6 overflow-hidden rounded relative">
-
-                            <img
-                                alt="Сколы и царапины"
-                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                src="1quiz.png"
-                            >
-
+                            <img alt="Сколы и царапины" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="1quiz.png">
                             <div class="reveal-layer absolute inset-0 bg-electric-blue/90 flex items-center justify-center p-4 text-center">
-
-                                <p class="text-white font-label-md text-body-sm leading-tight">
-                                    Мы выполним: Химическую, пескоструйную обработку, устраним повреждения и нанесем три защитных слоя европейских материалов.
-                                </p>
-
+                                <p class="text-white font-label-md text-body-sm leading-tight">Мы выполним: Химическую, пескоструйную обработку, устраним повреждения и нанесем три защитных слоя европейских материалов.</p>
                             </div>
-
                         </div>
-
-                        <span class="font-headline-sm text-white mb-2 block">
-                            Сколы, царапины на поверхности
-                        </span>
-
-                        <p class="font-body-sm text-steel-gray">
-                            Внешний вид испорчен бордюркой, притёртостями или следами от камней на трассе.
-                        </p>
-
+                        <span class="font-headline-sm text-white mb-2 block">Сколы, царапины на поверхности</span>
+                        <p class="font-body-sm text-steel-gray">Внешний вид испорчен бордюркой, притёртостями или следами от камней на трассе.</p>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer group relative">
-
-                    <input
-                        class="hidden peer"
-                        name="disk_state"
-                        type="radio"
-                        value="Погнут диск"
-                    >
-
+                    <input class="hidden peer" name="disk_state" type="radio" value="Погнут диск">
                     <div class="glass-card h-full p-6 flex flex-col peer-checked:border-electric-blue peer-checked:bg-white/5 relative overflow-hidden">
-
                         <div class="w-full h-48 mb-6 overflow-hidden rounded relative">
-
-                            <img
-                                alt="Погнут диск"
-                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                src="2quiz.jpg"
-                            >
-
+                            <img alt="Погнут диск" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="2quiz.jpg">
                             <div class="reveal-layer absolute inset-0 bg-electric-blue/90 flex items-center justify-center p-4 text-center">
-
-                                <p class="text-white font-label-md text-body-sm leading-tight">
-                                    Мы выполним: Профессиональную правку дисков на высокоточном стенде без перегрева и потери прочности сплава.
-[09.08.2026 19:34] ­­: </p>
-
+                                <p class="text-white font-label-md text-body-sm leading-tight">Мы выполним: Профессиональную правку дисков на высокоточном стенде без перегрева и потери прочности сплава.</p>
                             </div>
-
                         </div>
-
-                        <span class="font-headline-sm text-white mb-2 block">
-                            Погнут диск, бьёт руль
-                        </span>
-
-                        <p class="font-body-sm text-steel-gray">
-                            Поймали яму, нарушена геометрия, езда становится небезопасной, страдает подвеска.
-                        </p>
-
+                        <span class="font-headline-sm text-white mb-2 block">Погнут диск, бьёт руль</span>
+                        <p class="font-body-sm text-steel-gray">Поймали яму, нарушена геометрия, езда становится небезопасной, страдает подвеска.</p>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer group relative">
-
-                    <input
-                        class="hidden peer"
-                        name="disk_state"
-                        type="radio"
-                        value="Облупилась краска"
-                    >
-
+                    <input class="hidden peer" name="disk_state" type="radio" value="Облупилась краска">
                     <div class="glass-card h-full p-6 flex flex-col peer-checked:border-electric-blue peer-checked:bg-white/5 relative overflow-hidden">
-
                         <div class="w-full h-48 mb-6 overflow-hidden rounded relative">
-
-                            <img
-                                alt="Облупилась краска"
-                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                src="3quiz.jpg"
-                            >
-
+                            <img alt="Облупилась краска" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="3quiz.jpg">
                             <div class="reveal-layer absolute inset-0 bg-electric-blue/90 flex items-center justify-center p-4 text-center">
-
-                                <p class="text-white font-label-md text-body-sm leading-tight">
-                                    Мы выполним: Химическую смывку старого ЛКП и порошковую покраску с запеканием в печи при 200°C.
-                                </p>
-
+                                <p class="text-white font-label-md text-body-sm leading-tight">Мы выполним: Химическую смывку старого ЛКП и порошковую покраску с запеканием в печи при 200°C.</p>
                             </div>
-
                         </div>
-
-                        <span class="font-headline-sm text-white mb-2 block">
-                            Облупилась или выцвела краска
-                        </span>
-
-                        <p class="font-body-sm text-steel-gray">
-                            Заводское или старое покрытие облезло, выгорело или пострадало от реагентов.
-                        </p>
-
+                        <span class="font-headline-sm text-white mb-2 block">Облупилась или выцвела краска</span>
+                        <p class="font-body-sm text-steel-gray">Заводское или старое покрытие облезло, выгорело или пострадало от реагентов.</p>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer group relative">
-
-                    <input
-                        class="hidden peer"
-                        name="disk_state"
-                        type="radio"
-                        value="Коррозия и ржавчина"
-                    >
-
+                    <input class="hidden peer" name="disk_state" type="radio" value="Коррозия и ржавчина">
                     <div class="glass-card h-full p-6 flex flex-col peer-checked:border-electric-blue peer-checked:bg-white/5 relative overflow-hidden">
-
                         <div class="w-full h-48 mb-6 overflow-hidden rounded relative">
-
-                            <img
-                                alt="Коррозия и ржавчина"
-                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                src="4quiz.jpg"
-                            >
-
+                            <img alt="Коррозия и ржавчина" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="4quiz.jpg">
                             <div class="reveal-layer absolute inset-0 bg-electric-blue/90 flex items-center justify-center p-4 text-center">
-
-                                <p class="text-white font-label-md text-body-sm leading-tight">
-                                    Мы выполним: Глубокую очистку коррозии, антикоррозийную подготовку и полимерное покрытие с грунтом.
-                                </p>
-
+                                <p class="text-white font-label-md text-body-sm leading-tight">Мы выполним: Глубокую очистку коррозии, антикоррозийную подготовку и полимерное покрытие с грунтом.</p>
                             </div>
-
                         </div>
-
-                        <span class="font-headline-sm text-white mb-2 block">
-                            Следы коррозии, ржавчина
-                        </span>
-
-                        <p class="font-body-sm text-steel-gray">
-                            Металл начинает разрушаться под воздействием влаги и дорожной химии.
-                        </p>
-
+                        <span class="font-headline-sm text-white mb-2 block">Следы коррозии, ржавчина</span>
+                        <p class="font-body-sm text-steel-gray">Металл начинает разрушаться под воздействием влаги и дорожной химии.</p>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer group relative md:col-span-2 lg:col-span-1">
-
-                    <input
-[09.08.2026 19:34] ­­: class="hidden peer"
-                        name="disk_state"
-                        type="radio"
-                        value="Смена цвета / Кастом"
-                    >
-
+                    <input class="hidden peer" name="disk_state" type="radio" value="Смена цвета / Кастом">
                     <div class="glass-card h-full p-6 flex flex-col peer-checked:border-electric-blue peer-checked:bg-white/5 relative overflow-hidden">
-
                         <div class="w-full h-48 mb-6 overflow-hidden rounded relative">
-
-                            <img
-                                alt="Кастомное окрашивание"
-                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                src="5quiz.jpg"
-                            >
-
+                            <img alt="Кастомное окрашивание" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="5quiz.jpg">
                             <div class="reveal-layer absolute inset-0 bg-electric-blue/90 flex items-center justify-center p-4 text-center">
-
-                                <p class="text-white font-label-md text-body-sm leading-tight">
-                                    Мы выполним: Подбор индивидуального цвета из широкой палитры и премиальное окрашивание.
-                                </p>
-
+                                <p class="text-white font-label-md text-body-sm leading-tight">Мы выполним: Подбор индивидуального цвета из широкой палитры и премиальное окрашивание.</p>
                             </div>
-
                         </div>
-
-                        <span class="font-headline-sm text-white mb-2 block">
-                            Хочу перекрасить в новый цвет
-                        </span>
-
-                        <p class="font-body-sm text-steel-gray">
-                            Надоел стандартный вид, хочется сделать эксклюзивный кастом или попасть в цвет суппортов.
-                        </p>
-
+                        <span class="font-headline-sm text-white mb-2 block">Хочу перекрасить в новый цвет</span>
+                        <p class="font-body-sm text-steel-gray">Надоел стандартный вид, хочется сделать эксклюзивный кастом или попасть в цвет суппортов.</p>
                     </div>
-
                 </label>
-
             </div>
-
         </div>
 
-
-        <!-- STEP 2 -->
-
-        <div
-            class="step-inactive transition-all duration-500"
-            id="step-2"
-        >
-
-            <h2 class="font-headline-lg text-white mb-10 text-center">
-                Диаметр дисков (R)?
-            </h2>
-
-            <div
-                class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4"
-                id="radius-grid"
-            >
-
+        <!-- Step 2: Diameter -->
+        <div class="step-inactive transition-all duration-500" id="step-2">
+            <h2 class="font-headline-lg text-white mb-10 text-center">Диаметр дисков (R)?</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4" id="radius-grid">
                 <script>
-
-                const radii = [
-                    12,
-                    13,
-                    14,
-                    15,
-                    16,
-                    17,
-                    18,
-                    19,
-                    20,
-                    21,
-                    22,
-                    23,
-                    24
-                ];
-
-                document.write(
-                    radii.map(r => `
+                    const radii = [12,13,14,15,16,17,18,19,20,21,22,23,24];
+                    document.write(radii.map(r => `
                         <label class="cursor-pointer">
-
-                            <input
-                                type="radio"
-                                name="radius"
-                                value="R${r}"
-                                class="hidden peer auto-next"
-                            >
-
+                            <input type="radio" name="radius" value="R${r}" class="hidden peer auto-next">
                             <div class="glass-card py-6 flex items-center justify-center font-display-lg text-headline-md text-steel-gray peer-checked:text-electric-blue peer-checked:border-electric-blue transition-all">
-
                                 R${r}
-
                             </div>
-
                         </label>
-                    `).join('')
-                );
-
+                    `).join(''));
                 </script>
-
             </div>
-
         </div>
 
-
-        <!-- STEP 3 -->
-
-        <div
-            class="step-inactive transition-all duration-500"
-            id="step-3"
-        >
-
-            <h2 class="font-headline-lg text-white mb-10 text-center">
-                Дополнительные услуги?
-            </h2>
-
+        <!-- Step 3: Services -->
+        <div class="step-inactive transition-all duration-500" id="step-3">
+            <h2 class="font-headline-lg text-white mb-10 text-center">Дополнительные услуги?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
                 <label class="cursor-pointer">
-
-                    <input
-                        class="hidden peer auto-next"
-                        name="service"
-                        type="checkbox"
-                        value="Алмазная проточка (ЧПУ)"
-                    >
-
+                    <input class="hidden peer" name="service" type="checkbox" value="Алмазная проточка (ЧПУ)">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
-[09.08.2026 19:34] ­­: <span class="font-headline-sm text-white">
-                            Алмазная проточка (ЧПУ)
-                        </span>
-
-                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">
-                            check_circle
-                        </span>
-
+                        <span class="font-headline-sm text-white">Алмазная проточка (ЧПУ)</span>
+                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer">
-
-                    <input
-                        class="hidden peer auto-next"
-                        name="service"
-                        type="checkbox"
-                        value="Покраска суппортов"
-                    >
-
+                    <input class="hidden peer" name="service" type="checkbox" value="Покраска суппортов">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
-
-                        <span class="font-headline-sm text-white">
-                            Покраска суппортов
-                        </span>
-
-                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">
-                            check_circle
-                        </span>
-
+                        <span class="font-headline-sm text-white">Покраска суппортов</span>
+                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer">
-
-                    <input
-                        class="hidden peer auto-next"
-                        name="service"
-                        type="checkbox"
-                        value="Сезонное хранение шин"
-                    >
-
+                    <input class="hidden peer" name="service" type="checkbox" value="Сезонное хранение шин">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
-
-                        <span class="font-headline-sm text-white">
-                            Сезонное хранение шин
-                        </span>
-
-                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">
-                            check_circle
-                        </span>
-
+                        <span class="font-headline-sm text-white">Сезонное хранение шин</span>
+                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
-
                 </label>
-
-
                 <label class="cursor-pointer">
-
-                    <input
-                        class="hidden peer auto-next"
-                        name="service"
-                        type="checkbox"
-                        value="Срочный заказ"
-                    >
-
+                    <input class="hidden peer" name="service" type="checkbox" value="Срочный заказ">
                     <div class="glass-card p-6 flex justify-between items-center peer-checked:border-electric-blue">
-
-                        <span class="font-headline-sm text-white">
-                            Срочный заказ
-                        </span>
-
-                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">
-                            check_circle
-                        </span>
-
+                        <span class="font-headline-sm text-white">Срочный заказ</span>
+                        <span class="material-symbols-outlined text-electric-blue opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
                     </div>
-
                 </label>
-
             </div>
-
         </div>
 
-
-        <!-- STEP 4 -->
-
-        <div
-            class="step-inactive transition-all duration-500"
-            id="step-4"
-        >
-
-            <h2 class="font-headline-lg text-white mb-10 text-center">
-                Ваши контактные данные
-            </h2>
-
+        <!-- Step 4: Final Form -->
+        <div class="step-inactive transition-all duration-500" id="step-4">
+            <h2 class="font-headline-lg text-white mb-10 text-center">Ваши контактные данные</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-
                 <div class="flex flex-col gap-6">
-
                     <div class="relative">
-
-                        <input
-                            class="w-full bg-transparent border-0 border-b border-surface-variant py-4 font-body-lg text-white focus:ring-0 placeholder:text-outline transition-all"
-                            name="name"
-                            placeholder="Ваше имя"
-                            required
-                            type="text"
-                        >
-
-                        <span class="material-symbols-outlined absolute right-0 top-4 text-steel-gray">
-                            person
-                        </span>
-
+                        <input class="w-full bg-transparent border-0 border-b border-surface-variant py-4 font-body-lg text-white focus:ring-0 placeholder:text-outline transition-all" name="name" placeholder="Ваше имя" required type="text">
+                        <span class="material-symbols-outlined absolute right-0 top-4 text-steel-gray">person</span>
                     </div>
-
-
                     <div class="relative">
-
-                        <input
-[09.08.2026 19:34] ­­: class="w-full bg-transparent border-0 border-b border-surface-variant py-4 font-body-lg text-white focus:ring-0 placeholder:text-outline transition-all"
-                            name="phone"
-                            placeholder="+7 (___) ___-__-__"
-                            required
-                            type="tel"
-                        >
-
-                        <span class="material-symbols-outlined absolute right-0 top-4 text-steel-gray">
-                            phone
-                        </span>
-
+                        <input class="w-full bg-transparent border-0 border-b border-surface-variant py-4 font-body-lg text-white focus:ring-0 placeholder:text-outline transition-all" name="phone" placeholder="+7 (___) ___-__-__" required type="tel">
+                        <span class="material-symbols-outlined absolute right-0 top-4 text-steel-gray">phone</span>
                     </div>
-
 
                     <div class="flex flex-col gap-3 mt-2">
-
-                        <label class="font-body-sm text-steel-gray">
-                            Предпочтительный способ связи:
-                        </label>
-
+                        <label class="font-body-sm text-steel-gray">Предпочтительный способ связи:</label>
                         <div class="grid grid-cols-3 gap-3">
-
-
                             <label class="cursor-pointer">
-
-                                <input
-                                    type="radio"
-                                    name="preferred_contact"
-                                    value="Telegram"
-                                    class="hidden peer"
-                                    checked
-                                >
-
+                                <input type="radio" name="preferred_contact" value="Telegram" class="hidden peer" checked>
                                 <div class="glass-card py-3 px-2 text-center text-sm font-label-md text-white peer-checked:border-electric-blue peer-checked:bg-electric-blue/20 rounded-lg transition-all">
                                     Telegram
                                 </div>
-
                             </label>
-
-
                             <label class="cursor-pointer">
-
-                                <input
-                                    type="radio"
-                                    name="preferred_contact"
-                                    value="WhatsApp"
-                                    class="hidden peer"
-                                >
-
+                                <input type="radio" name="preferred_contact" value="WhatsApp" class="hidden peer">
                                 <div class="glass-card py-3 px-2 text-center text-sm font-label-md text-white peer-checked:border-electric-blue peer-checked:bg-electric-blue/20 rounded-lg transition-all">
                                     WhatsApp
                                 </div>
-
                             </label>
-
-
                             <label class="cursor-pointer">
-
-                                <input
-                                    type="radio"
-                                    name="preferred_contact"
-                                    value="Телефонный звонок"
-                                    class="hidden peer"
-                                >
-
+                                <input type="radio" name="preferred_contact" value="Телефонный звонок" class="hidden peer">
                                 <div class="glass-card py-3 px-2 text-center text-sm font-label-md text-white peer-checked:border-electric-blue peer-checked:bg-electric-blue/20 rounded-lg transition-all">
                                     Звонок
                                 </div>
-
                             </label>
-
                         </div>
-
                     </div>
-
                 </div>
-
 
                 <div class="flex flex-col gap-4">
-
                     <label class="w-full h-full min-h-[200px] border-2 border-dashed border-surface-variant rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-electric-blue transition-colors group relative p-4">
-
-                        <span
-                            class="material-symbols-outlined text-4xl text-steel-gray mb-2 group-hover:text-electric-blue"
-                            id="photo-icon"
-                        >
-                            add_a_photo
-                        </span>
-
-                        <p
-                            class="font-label-md text-outline text-center px-4"
-                            id="photo-label"
-                        >
-                            Загрузите фото дисков (опционально)
-                        </p>
-
-                        <input
-                            class="hidden"
-                            name="disk_photo"
-                            id="disk_photo"
-[09.08.2026 19:34] ­­: type="file"
-                            accept="image/*"
-                        >
-
+                        <span class="material-symbols-outlined text-4xl text-steel-gray mb-2 group-hover:text-electric-blue" id="photo-icon">add_a_photo</span>
+                        <p class="font-label-md text-outline text-center px-4" id="photo-label">Загрузите фото дисков (опционально)</p>
+                        <input class="hidden" name="disk_photo" id="disk_photo" type="file" accept="image/*">
                     </label>
-
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- NAVIGATION -->
-
-        <div
-            class="mt-12 flex justify-between items-center"
-            id="navigation-container"
-        >
-
-            <button
-                class="hidden font-label-md text-steel-gray hover:text-white transition-colors flex items-center gap-2"
-                id="prev-btn"
-                type="button"
-            >
-                <span class="material-symbols-outlined">
-                    arrow_back
-                </span>
-
-                Назад
+        <!-- Navigation Buttons -->
+        <div class="mt-12 flex justify-between items-center" id="navigation-container">
+            <button class="hidden font-label-md text-steel-gray hover:text-white transition-colors flex items-center gap-2" id="prev-btn" type="button">
+                <span class="material-symbols-outlined">arrow_back</span> Назад
             </button>
-
-
-            <button
-                class="neon-button ml-auto bg-primary text-on-primary px-8 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-sm flex items-center gap-2 rounded-lg"
-                id="next-btn"
-                type="button"
-            >
-                Далее
-
-                <span class="material-symbols-outlined text-sm">
-                    arrow_forward
-                </span>
+            <button class="neon-button ml-auto bg-primary text-on-primary px-8 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-sm flex items-center gap-2 rounded-lg" id="next-btn" type="button">
+                Далее <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </button>
-
-
-            <button
-                class="hidden neon-button ml-auto bg-electric-blue text-white px-8 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-sm neon-glow rounded-lg"
-                id="submit-btn"
-                type="submit"
-            >
+            <button class="hidden neon-button ml-auto bg-electric-blue text-white px-8 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-sm neon-glow rounded-lg" id="submit-btn" type="submit">
                 ПОЛУЧИТЬ РАСЧЕТ
             </button>
-
         </div>
-
     </form>
 
-
-    <!-- THANK YOU -->
-
-    <div
-        class="hidden flex flex-col items-center text-center py-10 transition-all duration-700 opacity-0"
-        id="thank-you-screen"
-    >
-
+    <!-- Thank You Screen -->
+    <div class="hidden flex flex-col items-center text-center py-10 transition-all duration-700 opacity-0" id="thank-you-screen">
         <div class="w-20 h-20 bg-electric-blue/20 rounded-full flex items-center justify-center mb-6 neon-glow">
-
-            <span class="material-symbols-outlined text-electric-blue text-5xl">
-                check_circle
-            </span>
-
+            <span class="material-symbols-outlined text-electric-blue text-5xl">check_circle</span>
         </div>
-
-        <h2 class="font-display-lg text-headline-lg text-white mb-3">
-            Спасибо! Ваша заявка принята
-        </h2>
-
-        <p class="font-body-lg text-steel-gray mb-8">
-            Мы свяжемся с вами и пришлём расчет за 15 минут
-        </p>
-
-        <a
-            class="neon-button inline-block bg-primary text-on-primary px-6 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-xs rounded-lg hover:bg-white"
-            href="index.html"
-        >
+        <h2 class="font-display-lg text-headline-lg text-white mb-3">Спасибо! Ваша заявка принята</h2>
+        <p class="font-body-lg text-steel-gray mb-8">Мы свяжемся с вами и пришлём расчет за 15 минут</p>
+        <a class="neon-button inline-block bg-primary text-on-primary px-6 py-3 font-label-md font-bold uppercase tracking-[0.15em] text-xs rounded-lg hover:bg-white" href="index.html">
             Вернуться на главную
         </a>
-
     </div>
-
 </div>
-
 </main>
 
-
 <footer style="width: 100%; padding: 60px 20px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #000000; font-family: 'Geist', sans-serif; color: #6c757d; text-align: center;">
-
-    <div style="font-size: 12px; letter-spacing: 0.5px;">
-        © 2026 DISC MAGIC ART. Все права защищены.
-    </div>
-
+    <div style="font-size: 12px; letter-spacing: 0.5px;">© 2026 DISC MAGIC ART. Все права защищены.</div>
 </footer>
 
-
 <script>
-
-// ======================================================
-// НОВЫЙ CLOUDFLARE WORKER
-// ======================================================
-
-const WORKER_URL =
-    'https://fragrant-poetry-e584.verarijq.workers.dev/';
-
-
-// ======================================================
-// QUIZ
-// ======================================================
+// URL нового Cloudflare Worker
+const WORKER_URL = 'https://fragrant-poetry-e584.verarijq.workers.dev/';
 
 let currentStep = 1;
-
 const totalSteps = 4;
-
-const progressBar =
-    document.getElementById('progress-bar');
-
-const stepCounter =
-    document.getElementById('step-counter');
-
-const prevBtn =
-    document.getElementById('prev-btn');
-
-const nextBtn =
-    document.getElementById('next-btn');
-
-const submitBtn =
-    document.getElementById('submit-btn');
-
-const quizForm =
-    document.getElementById('quiz-form');
-
-const thankYouScreen =
-    document.getElementById('thank-you-screen');
-
-const mainContainer =
-    document.getElementById('main-container');
-
-const quizHeader =
-    document.getElementById('quiz-header');
-
-const errorMsg =
-    document.getElementById('error-msg');
-
-
-// ======================================================
-// VALIDATION
-// ======================================================
+const progressBar = document.getElementById('progress-bar');
+const stepCounter = document.getElementById('step-counter');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const submitBtn = document.getElementById('submit-btn');
+const quizForm = document.getElementById('quiz-form');
+const thankYouScreen = document.getElementById('thank-you-screen');
+const mainContainer = document.getElementById('main-container');
+const quizHeader = document.getElementById('quiz-header');
+const errorMsg = document.getElementById('error-msg');
 
 function validateStep(step) {
-
     errorMsg.classList.add('hidden');
-
     if (step === 1) {
-[09.08.2026 19:34] ­­: const checked =
-            quizForm.querySelector(
-                'input[name="disk_state"]:checked'
-            );
-
+        const checked = quizForm.querySelector('input[name="disk_state"]:checked');
         if (!checked) {
-
-            errorMsg.innerText =
-                'Выберите состояние дисков';
-
+            errorMsg.innerText = 'Выберите состояние дисков';
             errorMsg.classList.remove('hidden');
-
             return false;
         }
-
-    }
-
-    else if (step === 2) {
-
-        const checked =
-            quizForm.querySelector(
-                'input[name="radius"]:checked'
-            );
-
+    } else if (step === 2) {
+        const checked = quizForm.querySelector('input[name="radius"]:checked');
         if (!checked) {
-
-            errorMsg.innerText =
-                'Выберите диаметр дисков';
-
+            errorMsg.innerText = 'Выберите диаметр дисков';
             errorMsg.classList.remove('hidden');
-
             return false;
         }
-
     }
-
     return true;
 }
 
-
-// ======================================================
-// UPDATE QUIZ
-// ======================================================
-
 function updateQuiz() {
-
-    for (
-        let i = 1;
-        i <= totalSteps;
-        i++
-    ) {
-
-        const el =
-            document.getElementById(
-                step-${i}
-            );
-
-        if (i === currentStep) {
-
-            el.classList.replace(
-                'step-inactive',
-                'step-active'
-            );
-
+    for(let i=1; i<=totalSteps; i++) {
+        const el = document.getElementById(`step-${i}`);
+        if(i === currentStep) {
+            el.classList.replace('step-inactive', 'step-active');
+        } else {
+            el.classList.replace('step-active', 'step-inactive');
         }
-
-        else {
-
-            el.classList.replace(
-                'step-active',
-                'step-inactive'
-            );
-
-        }
-
     }
 
+    const progress = (currentStep / totalSteps) * 100;
+    progressBar.style.width = `${progress}%`;
+    stepCounter.innerText = `Шаг ${currentStep} из ${totalSteps}`;
 
-    const progress =
-        (currentStep / totalSteps) * 100;
-
-
-    progressBar.style.width =
-        ${progress}%;
-
-
-    stepCounter.innerText =
-        Шаг ${currentStep} из ${totalSteps};
-
-
-    if (currentStep === 1) {
-
+    if(currentStep === 1) {
         prevBtn.classList.add('hidden');
-
-    }
-
-    else {
-
+    } else {
         prevBtn.classList.remove('hidden');
-
     }
 
-
-    if (currentStep === totalSteps) {
-
+    if(currentStep === totalSteps) {
         nextBtn.classList.add('hidden');
-
         submitBtn.classList.remove('hidden');
-
-    }
-
-    else {
-
+    } else {
         nextBtn.classList.remove('hidden');
-
         submitBtn.classList.add('hidden');
-
     }
-
 }
 
-
-// ======================================================
-// NEXT
-// ======================================================
-
-nextBtn.addEventListener(
-    'click',
-    () => {
-
-        if (!validateStep(currentStep)) {
-            return;
-        }
-
-
-        if (currentStep < totalSteps) {
-
-            currentStep++;
-
-            updateQuiz();
-
-
-            window.scrollTo({
-                top:
-                    mainContainer.offsetTop -
-                    100,
-
-                behavior:
-                    'smooth'
-            });
-
-        }
-
+nextBtn.addEventListener('click', () => {
+    if(!validateStep(currentStep)) return;
+    if(currentStep < totalSteps) {
+        currentStep++;
+        updateQuiz();
+        window.scrollTo({ top: mainContainer.offsetTop - 100, behavior: 'smooth' });
     }
-);
+});
 
-
-// ======================================================
-// PREVIOUS
-// ======================================================
-
-prevBtn.addEventListener(
-    'click',
-    () => {
-
-        errorMsg.classList.add(
-            'hidden'
-        );
-
-
-        if (currentStep > 1) {
-
-            currentStep--;
-
-            updateQuiz();
-
-
-            window.scrollTo({
-                top:
-                    mainContainer.offsetTop -
-                    100,
-
-                behavior:
-                    'smooth'
-            });
-
-        }
-
+prevBtn.addEventListener('click', () => {
+    errorMsg.classList.add('hidden');
+    if(currentStep > 1) {
+        currentStep--;
+        updateQuiz();
+        window.scrollTo({ top: mainContainer.offsetTop - 100, behavior: 'smooth' });
     }
-);
+});
 
-
-// ======================================================
-// AUTO NEXT
-// ======================================================
-
-quizForm
-    .querySelectorAll('.auto-next')
-    .forEach(input => {
-
-        input.addEventListener(
-            'change',
-            () => {
-
-                setTimeout(
-                    () => {
-
-                        if (
-                            validateStep(
-                                currentStep
-                            ) &&
-                            currentStep <
-                            totalSteps
-                        ) {
-
-                            currentStep++;
-
-                            updateQuiz();
-
-                        }
-
-                    },
-                    250
-                );
-
+quizForm.querySelectorAll('.auto-next').forEach(input => {
+    input.addEventListener('change', () => {
+        setTimeout(() => {
+            if(validateStep(currentStep) && currentStep < totalSteps) {
+                currentStep++;
+                updateQuiz();
             }
-        );
-
+        }, 250);
     });
+});
 
-
-// ======================================================
-// PHOTO UI
-// ======================================================
-
-const fileInput =
-    document.getElementById(
-        'disk_photo'
-    );
-
-
-fileInput.addEventListener(
-    'change',
-[09.08.2026 19:34] ­­: (e) => {
-
-        if (
-            e.target.files.length > 0
-        ) {
-
-            document
-                .getElementById(
-                    'photo-label'
-                )
-                .innerText =
-                'Файл выбран: ' +
-                e.target.files[0].name;
-
-
-            document
-                .getElementById(
-                    'photo-icon'
-                )
-                .innerText =
-                'check_circle';
-
-
-            document
-                .getElementById(
-                    'photo-icon'
-                )
-                .classList
-                .add(
-                    'text-electric-blue'
-                );
-
-        }
-
+const fileInput = document.getElementById('disk_photo');
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        document.getElementById('photo-label').innerText = `Файл выбран: ${e.target.files[0].name}`;
+        document.getElementById('photo-icon').innerText = 'check_circle';
+        document.getElementById('photo-icon').classList.add('text-electric-blue');
     }
-);
-
-
-// ======================================================
-// ОТПРАВКА ЗАЯВКИ
-// CLOUDFLARE → TELEGRAM
-// ======================================================
-
-quizForm.addEventListener(
-    'submit',
-    async function(e) {
-
-        e.preventDefault();
-
-
-        const formData =
-            new FormData(quizForm);
-
-
-        const selectedServices =
-            [];
-
-
-        quizForm
-            .querySelectorAll(
-                'input[name="service"]:checked'
-            )
-            .forEach(function(cb) {
-
-                selectedServices.push(
-                    cb.value
-                );
-
-            });
-
-
-        // Поля под наш новый Worker
-
-        const payload = {
-
-            condition:
-                formData.get(
-                    'disk_state'
-                ) || '',
-
-            diameter:
-                formData.get(
-                    'radius'
-                ) || '',
-
-            services:
-                selectedServices,
-
-            name:
-                (
-                    formData.get(
-                        'name'
-                    ) || ''
-                ).trim(),
-
-            phone:
-                (
-                    formData.get(
-                        'phone'
-                    ) || ''
-                ).trim(),
-
-            preferred_contact:
-                formData.get(
-                    'preferred_contact'
-                ) || ''
-
-        };
-
-
-        if (
-            !payload.name ||
-            !payload.phone
-        ) {
-
-            alert(
-                'Введите имя и номер телефона'
-            );
-
-            return;
-
-        }
-
-
-        submitBtn.disabled =
-            true;
-
-
-        submitBtn.innerText =
-            'ОТПРАВКА...';
-
-
-        try {
-
-            const response =
-                await fetch(
-                    WORKER_URL,
-                    {
-
-                        method:
-                            'POST',
-
-                        mode:
-                            'cors',
-
-                        headers: {
-
-                            'Content-Type':
-                                'application/json'
-
-                        },
-
-                        body:
-                            JSON.stringify(
-                                payload
-                            )
-
-                    }
-                );
-
-
-            const result =
-                await response.json();
-
-
-            if (
-                !response.ok ||
-                !result.success
-            ) {
-
-                console.error(
-                    'Ответ Worker:',
-                    result
-                );
-
-
-                throw new Error(
-                    result.error ||
-                    'Ошибка отправки заявки'
-                );
-
-            }
-
-
-            // ==========================================
-            // УСПЕШНО
-            // ==========================================
-
-            quizForm.classList.add(
-                'hidden'
-            );
-
-
-            document
-                .getElementById(
-                    'step-info'
-                )
-                .classList
-                .add(
-                    'hidden'
-                );
-
-
-            document
-                .getElementById(
-                    'navigation-container'
-                )
-                .classList
-                .add(
-                    'hidden'
-                );
-[09.08.2026 19:34] ­­: document
-                .getElementById(
-                    'progress-container'
-                )
-                .classList
-                .add(
-                    'hidden'
-                );
-
-
-            thankYouScreen
-                .classList
-                .remove(
-                    'hidden'
-                );
-
-
-            setTimeout(
-                function() {
-
-                    thankYouScreen
-                        .classList
-                        .replace(
-                            'opacity-0',
-                            'opacity-100'
-                        );
-
-                },
-                50
-            );
-
-
-            quizHeader.style.opacity =
-                '0.3';
-
-
-            window.scrollTo({
-
-                top:
-                    mainContainer.offsetTop -
-                    100,
-
-                behavior:
-                    'smooth'
-
-            });
-
-        }
-
-        catch (err) {
-
-            console.error(
-                'Ошибка отправки:',
-                err
-            );
-
-
-            alert(
-                'Не удалось отправить заявку. Попробуйте ещё раз.'
-            );
-
-
-            submitBtn.disabled =
-                false;
-
-
-            submitBtn.innerText =
-                'ПОЛУЧИТЬ РАСЧЕТ';
-
-        }
-
+});
+
+// Отправка заявки через Cloudflare Worker в Telegram
+quizForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(quizForm);
+    const selectedServices = [];
+    quizForm
+        .querySelectorAll('input[name="service"]:checked')
+        .forEach(function(cb) {
+            selectedServices.push(cb.value);
+        });
+    const payload = {
+        condition: formData.get('disk_state') || '',
+        diameter: formData.get('radius') || '',
+        services: selectedServices,
+        name: (formData.get('name') || '').trim(),
+        phone: (formData.get('phone') || '').trim(),
+        preferred_contact: formData.get('preferred_contact') || ''
+    };
+    if (!payload.name || !payload.phone) {
+        alert('Введите имя и номер телефона');
+        return;
     }
-);
-
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'ОТПРАВКА...';
+    try {
+        const response = await fetch(WORKER_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+            console.error('Ответ Worker:', result);
+            throw new Error(result.error || 'Ошибка отправки заявки');
+        }
+        quizForm.classList.add('hidden');
+        document.getElementById('step-info').classList.add('hidden');
+        document.getElementById('navigation-container').classList.add('hidden');
+        document.getElementById('progress-container').classList.add('hidden');
+        thankYouScreen.classList.remove('hidden');
+        setTimeout(function() {
+            thankYouScreen.classList.replace('opacity-0', 'opacity-100');
+        }, 50);
+        quizHeader.style.opacity = '0.3';
+        window.scrollTo({
+            top: mainContainer.offsetTop - 100,
+            behavior: 'smooth'
+        });
+    } catch (err) {
+        console.error('Ошибка отправки:', err);
+        alert('Не удалось отправить заявку. Попробуйте ещё раз.');
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'ПОЛУЧИТЬ РАСЧЕТ';
+    }
+});
 </script>
 
 </body>
