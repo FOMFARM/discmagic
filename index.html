@@ -3,9 +3,61 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>ДИСК МАГИЯ АРТ | Реставрация и покраска дисков в Домодедово</title>
+    <!-- SEO -->
+    <title>Реставрация и порошковая покраска дисков в Домодедово | ДИСК МАГИЯ АРТ</title>
+    <meta name="description" content="Реставрация и порошковая покраска автомобильных дисков в Домодедово. Правка геометрии, устранение сколов и повреждений, восстановление покрытия. Гарантия до 3 лет. ДИСК МАГИЯ АРТ."/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="theme-color" content="#000000"/>
+    <!-- Canonical -->
+    <link rel="canonical" href="https://discmagic.art/"/>
+    <!-- Open Graph -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="ru_RU"/>
+    <meta property="og:site_name" content="ДИСК МАГИЯ АРТ"/>
+    <meta property="og:url" content="https://discmagic.art/"/>
+    <meta property="og:title" content="Реставрация и порошковая покраска дисков | ДИСК МАГИЯ АРТ"/>
+    <meta property="og:description" content="Профессиональная реставрация автомобильных дисков в Домодедово: порошковая покраска, правка геометрии и восстановление повреждений."/>
+    <meta property="og:image" content="https://discmagic.art/1kelpstatik.jpg"/>
+    <meta property="og:image:alt" content="ДИСК МАГИЯ АРТ — реставрация и порошковая покраска автомобильных дисков"/>
+    <!-- Дополнительные мета-теги для превью -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Реставрация и порошковая покраска дисков | ДИСК МАГИЯ АРТ"/>
+    <meta name="twitter:description" content="Реставрация, порошковая покраска и восстановление автомобильных дисков в Домодедово."/>
+    <meta name="twitter:image" content="https://discmagic.art/1kelpstatik.jpg"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Geist:wght@300;400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoRepair",
+      "name": "ДИСК МАГИЯ АРТ",
+      "url": "https://discmagic.art/",
+      "image": "https://discmagic.art/1kelpstatik.jpg",
+      "telephone": "+79891880288",
+      "description": "Реставрация и порошковая покраска автомобильных дисков в Домодедово. Правка геометрии, устранение повреждений и восстановление покрытия.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Домодедово",
+        "addressRegion": "Московская область",
+        "addressCountry": "RU"
+      },
+      "areaServed": [
+        "Домодедово",
+        "Подольск",
+        "Видное",
+        "Москва",
+        "Московская область"
+      ],
+      "sameAs": [
+        "https://t.me/Discmagicart",
+        "https://t.me/discmag",
+        "https://youtube.com/@tgkdiscmag",
+        "https://www.instagram.com/discmagicart",
+        "https://www.tiktok.com/@discmagic"
+      ]
+    }
+    </script>
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -689,6 +741,31 @@
         initReveal();
         initHeader();
     });
+</script>
+
+<!-- UTM & YCLID Tracker -->
+<script>
+(function() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const keys = [
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_term',
+            'utm_content',
+            'yclid'
+        ];
+        keys.forEach(function(key) {
+            const value = params.get(key);
+            if (value) {
+                sessionStorage.setItem(key, value);
+            }
+        });
+    } catch (error) {
+        console.error('Ошибка сохранения UTM/YCLID:', error);
+    }
+})();
 </script>
 </body>
 </html>
