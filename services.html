@@ -58,7 +58,7 @@
                         "tertiary-container": "#e2e2e2",
                         "on-surface-variant": "#c4c7c8",
                         "inverse-on-surface": "#303030",
-                        "tertiary": "#ffffff",
+                        "terti`ary": "#ffffff",
                         "error": "#ffb4ab",
                         "secondary": "#adc6ff",
                         "surface-container-low": "#1b1b1b"
@@ -781,5 +781,31 @@
 <span class="text-[10px] font-bold uppercase tracking-widest text-steel-gray">Канал</span>
 </a>
 </nav>
+<script>
+(function captureUtms() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const keys = [
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_term',
+            'utm_content'
+        ];
+        keys.forEach(function(key) {
+            const value = urlParams.get(key);
+            if (value) {
+                sessionStorage.setItem(key, value);
+            }
+        });
+        const yclid = urlParams.get('yclid');
+        if (yclid) {
+            sessionStorage.setItem('yclid', yclid);
+        }
+    } catch (error) {
+        console.error('Ошибка сохранения UTM:', error);
+    }
+})();
+</script>
 </body>
 </html>
