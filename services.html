@@ -333,6 +333,38 @@
             });
         });
     </script>
+<!-- First-Touch Attribution Script -->
+<script>
+(function captureFirstTouch() {
+    try {
+        if (localStorage.getItem('first_touch_saved') === 'true') {
+            return;
+        }
+        const params = new URLSearchParams(window.location.search);
+        const hasAdParams =
+            params.get('utm_source') ||
+            params.get('utm_medium') ||
+            params.get('utm_campaign') ||
+            params.get('utm_term') ||
+            params.get('utm_content') ||
+            params.get('yclid');
+        if (!hasAdParams) {
+            return;
+        }
+        localStorage.setItem('first_utm_source', params.get('utm_source') || '');
+        localStorage.setItem('first_utm_medium', params.get('utm_medium') || '');
+        localStorage.setItem('first_utm_campaign', params.get('utm_campaign') || '');
+        localStorage.setItem('first_utm_term', params.get('utm_term') || '');
+        localStorage.setItem('first_utm_content', params.get('utm_content') || '');
+        localStorage.setItem('first_yclid', params.get('yclid') || '');
+        localStorage.setItem('first_landing_page', window.location.href);
+        localStorage.setItem('first_referrer', document.referrer || '');
+        localStorage.setItem('first_touch_saved', 'true');
+    } catch (error) {
+        console.error('Ошибка сохранения first-touch attribution:', error);
+    }
+})();
+</script>
 </head>
 <body class="font-body-md text-body-md antialiased md:pb-0 pt-24 bg-[#000000] pb-24">
 <header class="site-header-block"><style>.site-header-block { position: fixed; top: 0; left: 0; z-index: 100; width: 100%; height: 60px; background: rgba(11, 12, 16, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .header-logo-text { font-weight: 800; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; background: linear-gradient(135deg, #ffffff 0%, #a0a5b5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; text-decoration: none; } .header-location-badge { font-size: 0.8rem; color: #b0b5c0; background: rgba(255, 255, 255, 0.04); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.08); white-space: nowrap; text-decoration: none;} @media (max-width: 480px) { .site-header-block { height: 52px; padding: 0 16px; } .header-logo-text { font-size: 0.9rem; } .header-location-badge { font-size: 0.72rem; padding: 4px 10px; } }</style><a class="header-logo-text" href="index.html">ДИСК МАГИЯ АРТ</a><div class="flex items-center"><a class="header-location-badge" href="https://yandex.ru/maps/org/disk_magiya_art/212893045004?si=php25ag7h5erjfau8c7kqf79qw" target="_blank">Домодедово</a><a class="flex items-center justify-center w-8 h-8 ml-2 rounded-full bg-white/5 border border-white/10 text-white hover:brightness-125 transition-all" href="tel:+79891880288" title="Позвонить нам"><span class="material-symbols-outlined" style="font-size: 18px;">phone</span></a></div></header>
@@ -878,7 +910,7 @@ href="quiz.html">Рассчитать стоимость</a>
 </p>
 <a
 class="neon-button inline-block bg-electric-blue border border-electric-blue text-white py-3 px-8 rounded-lg font-label-md text-center uppercase tracking-widest"
-href="https://api.whatsapp.com/send/?phone=79891880288&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9D%D0%B5%20%D0%BD%D0%B0%D1%88%D1%91%D0%BB%20%D0%BD%D1%83%D0%B6%D0%BD%D1%83%D1%8E%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D1%83%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B5%2C%20%D1%81%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D0%BB%D0%B8%20%D0%B2%D1%8B%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%87%D1%8C%3F&amp;type=phone_number&amp;app_absent=0"
+href="https://api.whatsapp.com/send/?phone=79891880288&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9D%D0%B5%20%D0%BD%D0%B0%D1%88%D1%91%D0%BB%20%D0%BD%D1%83%D0%B6%D0%BD%D1%83%D1%8E%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D1%83%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D1%81%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D0%BB%D0%B8%20%D0%B2%D1%8B%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%87%D1%8C%3F&amp;type=phone_number&amp;app_absent=0"
 target="_blank">
 Написать в WhatsApp →
 </a>
@@ -970,33 +1002,6 @@ function hideCookieBanner() {
         banner.classList.remove('flex');
     }, 400);
 }
-</script>
-
-<script>
-(function captureUtms() {
-    try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const keys = [
-            'utm_source',
-            'utm_medium',
-            'utm_campaign',
-            'utm_term',
-            'utm_content'
-        ];
-        keys.forEach(function(key) {
-            const value = urlParams.get(key);
-            if (value) {
-                sessionStorage.setItem(key, value);
-            }
-        });
-        const yclid = urlParams.get('yclid');
-        if (yclid) {
-            sessionStorage.setItem('yclid', yclid);
-        }
-    } catch (error) {
-        console.error('Ошибка сохранения UTM:', error);
-    }
-})();
 </script>
 </body>
 </html>
