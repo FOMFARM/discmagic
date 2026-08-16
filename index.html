@@ -765,27 +765,35 @@
     });
 </script>
 
-<!-- UTM & YCLID Tracker -->
+<!-- First-Touch Attribution Script -->
 <script>
-(function() {
+(function captureFirstTouch() {
     try {
+        if (localStorage.getItem('first_touch_saved') === 'true') {
+            return;
+        }
         const params = new URLSearchParams(window.location.search);
-        const keys = [
-            'utm_source',
-            'utm_medium',
-            'utm_campaign',
-            'utm_term',
-            'utm_content',
-            'yclid'
-        ];
-        keys.forEach(function(key) {
-            const value = params.get(key);
-            if (value) {
-                sessionStorage.setItem(key, value);
-            }
-        });
+        const hasAdParams =
+            params.get('utm_source') ||
+            params.get('utm_medium') ||
+            params.get('utm_campaign') ||
+            params.get('utm_term') ||
+            params.get('utm_content') ||
+            params.get('yclid');
+        if (!hasAdParams) {
+            return;
+        }
+        localStorage.setItem('first_utm_source', params.get('utm_source') || '');
+        localStorage.setItem('first_utm_medium', params.get('utm_medium') || '');
+        localStorage.setItem('first_utm_campaign', params.get('utm_campaign') || '');
+        localStorage.setItem('first_utm_term', params.get('utm_term') || '');
+        localStorage.setItem('first_utm_content', params.get('utm_content') || '');
+        localStorage.setItem('first_yclid', params.get('yclid') || '');
+        localStorage.setItem('first_landing_page', window.location.href);
+        localStorage.setItem('first_referrer', document.referrer || '');
+        localStorage.setItem('first_touch_saved', 'true');
     } catch (error) {
-        console.error('Ошибка сохранения UTM/YCLID:', error);
+        console.error('Ошибка сохранения first-touch attribution:', error);
     }
 })();
 </script>
