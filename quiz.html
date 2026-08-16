@@ -5,31 +5,50 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://fragrant-poetry-e584.verarijq.workers.dev/ https://*.yandex.ru https://*.yandex.net https://mc.yandex.ru https://mc.webvisor.com https://mc.webvisor.org https://yastatic.net wss://mc.yandex.ru wss://mc.webvisor.com wss://mc.webvisor.org;">
 
-<!-- Yandex.Metrika counter -->
+<!-- SEO Tags -->
+<title>Рассчитать стоимость реставрации дисков | ДИСК МАГИЯ АРТ</title>
+<meta name="description" content="Ответьте на несколько вопросов о состоянии дисков и отправьте заявку на предварительный расчёт стоимости реставрации в ДИСК МАГИЯ АРТ.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://discmagic.art/quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="ДИСК МАГИЯ АРТ">
+<meta property="og:url" content="https://discmagic.art/quiz.html">
+<meta property="og:title" content="Рассчитать стоимость реставрации дисков | ДИСК МАГИЯ АРТ">
+<meta property="og:description" content="Короткий квиз для предварительного расчёта стоимости реставрации автомобильных дисков.">
+
+<!-- Yandex.Metrika loader script -->
 <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) { return; }
-        }
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],
-        k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111582112', 'ym');
-    ym(111582112, 'init', {
-        ssr:true,
-        webvisor:true,
-        clickmap:true,
-        ecommerce:"dataLayer",
-        referrer:document.referrer,
-        url:location.href,
-        accurateTrackBounce:true,
-        trackLinks:true
-    });
+    function initYandexMetrika() {
+        if (window.ymLoaded) return;
+        window.ymLoaded = true;
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) { return; }
+            }
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],
+            k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111582112', 'ym');
+        ym(111582112, 'init', {
+            ssr:true,
+            webvisor:true,
+            clickmap:true,
+            ecommerce:"dataLayer",
+            referrer:document.referrer,
+            url:location.href,
+            accurateTrackBounce:true,
+            trackLinks:true
+        });
+    }
+
+    if (localStorage.getItem('cookies_accepted') === 'true') {
+        initYandexMetrika();
+    }
 </script>
 <!-- /Yandex.Metrika counter -->
 
-<title>DISCMAGIC.ART | Расчет Реставрации</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Geist:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script id="tailwind-config">
@@ -96,14 +115,6 @@
 </head>
 <body class="font-body-md">
 
-<!-- Yandex.Metrika noscript -->
-<noscript>
-    <div>
-        <img src="https://mc.yandex.ru/watch/111582112" style="position:absolute; left:-9999px;" alt="" />
-    </div>
-</noscript>
-<!-- /Yandex.Metrika noscript -->
-
 <main class="min-h-screen pt-40 pb-section-gap px-margin-x flex flex-col items-center">
 <div class="absolute top-8 right-8 z-50">
     <a class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-electric-blue/20 transition-all" href="index.html">
@@ -113,7 +124,7 @@
 
 <header class="max-w-4xl w-full text-center mb-16 reveal" id="quiz-header">
     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6">Узнайте стоимость реставрации ваших дисков за 1 минуту</h1>
-    <p class="font-body-lg text-steel-gray">Пройдите короткий опрос и получите точный расчет стоимости и сроков выполнения работ.</p>
+    <p class="font-body-lg text-steel-gray">Пройдите короткий опрос и отправьте данные для предварительного расчёта стоимости и сроков выполнения работ.</p>
 </header>
 
 <div class="w-full max-w-6xl glass-card p-10 rounded-xl relative overflow-hidden" id="main-container">
@@ -257,6 +268,11 @@
         <!-- Step 4: Final Form -->
         <div class="step-inactive transition-all duration-500" id="step-4">
             <h2 class="font-headline-lg text-white mb-10 text-center">Ваши контактные данные</h2>
+            <div class="mb-8 rounded-xl border border-electric-blue/30 bg-electric-blue/10 px-5 py-4 text-center">
+                <p class="font-body-sm text-steel-gray">
+                    Важно: принимаем в работу только диски, снятые с автомобиля и без шин.
+                </p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                 <div class="flex flex-col gap-6">
                     <div class="relative">
@@ -301,6 +317,11 @@
                     </label>
                 </div>
             </div>
+
+            <label class="flex items-start gap-3 text-sm text-steel-gray mt-6 cursor-pointer">
+                <input type="checkbox" name="privacy_consent" value="Да" required class="mt-1">
+                <span>Я согласен на обработку персональных данных для связи со мной по заявке.</span>
+            </label>
         </div>
 
         <!-- Navigation Buttons -->
@@ -331,6 +352,23 @@
 </div>
 </main>
 
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-[#111111]/95 backdrop-blur-md border-t border-white/10 p-4 md:p-6 shadow-2xl transition-all duration-500 hidden">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body-sm text-steel-gray text-center sm:text-left">
+            Мы используем файлы cookie для аналитики и улучшения работы сайта. Вы можете принять или отклонить их использование.
+        </p>
+        <div class="flex items-center gap-3 shrink-0">
+            <button id="cookie-reject" class="px-5 py-2.5 rounded-lg border border-white/10 text-white font-label-md text-xs uppercase tracking-wider hover:bg-white/5 transition-all">
+                Отклонить
+            </button>
+            <button id="cookie-accept" class="px-5 py-2.5 rounded-lg bg-electric-blue text-white font-label-md text-xs uppercase tracking-wider neon-glow hover:brightness-110 transition-all">
+                Принять
+            </button>
+        </div>
+    </div>
+</div>
+
 <footer style="width: 100%; padding: 60px 20px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #000000; font-family: 'Geist', sans-serif; color: #6c757d; text-align: center;">
     <div style="font-size: 12px; letter-spacing: 0.5px;">© 2026 DISC MAGIC ART. Все права защищены.</div>
 </footer>
@@ -350,6 +388,33 @@ const thankYouScreen = document.getElementById('thank-you-screen');
 const mainContainer = document.getElementById('main-container');
 const quizHeader = document.getElementById('quiz-header');
 const errorMsg = document.getElementById('error-msg');
+
+// Cookie banner logic
+document.addEventListener('DOMContentLoaded', () => {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAccept = document.getElementById('cookie-accept');
+    const cookieReject = document.getElementById('cookie-reject');
+
+    const hasAccepted = localStorage.getItem('cookies_accepted');
+    const hasDeclined = localStorage.getItem('cookies_declined');
+
+    if (!hasAccepted && !hasDeclined) {
+        cookieBanner.classList.remove('hidden');
+    }
+
+    cookieAccept.addEventListener('click', () => {
+        localStorage.setItem('cookies_accepted', 'true');
+        localStorage.removeItem('cookies_declined');
+        cookieBanner.classList.add('hidden');
+        initYandexMetrika();
+    });
+
+    cookieReject.addEventListener('click', () => {
+        localStorage.setItem('cookies_declined', 'true');
+        localStorage.removeItem('cookies_accepted');
+        cookieBanner.classList.add('hidden');
+    });
+});
 
 function validateStep(step) {
     errorMsg.classList.add('hidden');
