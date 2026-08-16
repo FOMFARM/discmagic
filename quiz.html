@@ -17,6 +17,39 @@
 <meta property="og:title" content="Рассчитать стоимость реставрации дисков | ДИСК МАГИЯ АРТ">
 <meta property="og:description" content="Короткий квиз для предварительного расчёта стоимости реставрации автомобильных дисков.">
 
+<!-- First-touch attribution script -->
+<script>
+(function captureFirstTouch() {
+    try {
+        if (localStorage.getItem('first_touch_saved') === 'true') {
+            return;
+        }
+        const params = new URLSearchParams(window.location.search);
+        const hasAdParams =
+            params.get('utm_source') ||
+            params.get('utm_medium') ||
+            params.get('utm_campaign') ||
+            params.get('utm_term') ||
+            params.get('utm_content') ||
+            params.get('yclid');
+        if (!hasAdParams) {
+            return;
+        }
+        localStorage.setItem('first_utm_source', params.get('utm_source') || '');
+        localStorage.setItem('first_utm_medium', params.get('utm_medium') || '');
+        localStorage.setItem('first_utm_campaign', params.get('utm_campaign') || '');
+        localStorage.setItem('first_utm_term', params.get('utm_term') || '');
+        localStorage.setItem('first_utm_content', params.get('utm_content') || '');
+        localStorage.setItem('first_yclid', params.get('yclid') || '');
+        localStorage.setItem('first_landing_page', window.location.href);
+        localStorage.setItem('first_referrer', document.referrer || '');
+        localStorage.setItem('first_touch_saved', 'true');
+    } catch (error) {
+        console.error('Ошибка сохранения first-touch attribution:', error);
+    }
+})();
+</script>
+
 <!-- Yandex.Metrika loader script -->
 <script type="text/javascript">
     function initYandexMetrika() {
@@ -503,36 +536,16 @@ fileInput.addEventListener('change', (e) => {
     }
 });
 
-(function captureUtmsFromUrl() {
-    try {
-        const params = new URLSearchParams(window.location.search);
-        const keys = [
-            'utm_source',
-            'utm_medium',
-            'utm_campaign',
-            'utm_term',
-            'utm_content',
-            'yclid'
-        ];
-        keys.forEach(function(key) {
-            const value = params.get(key);
-            if (value) {
-                sessionStorage.setItem(key, value);
-            }
-        });
-    } catch (error) {
-        console.error('Ошибка сохранения UTM/YCLID:', error);
-    }
-})();
-
 function getStoredUtmParams() {
     return {
-        utm_source: sessionStorage.getItem('utm_source') || 'Прямой заход / SEO',
-        utm_medium: sessionStorage.getItem('utm_medium') || '-',
-        utm_campaign: sessionStorage.getItem('utm_campaign') || '-',
-        utm_term: sessionStorage.getItem('utm_term') || '-',
-        utm_content: sessionStorage.getItem('utm_content') || '-',
-        yclid: sessionStorage.getItem('yclid') || '-'
+        utm_source: localStorage.getItem('first_utm_source') || 'Прямой заход / SEO',
+        utm_medium: localStorage.getItem('first_utm_medium') || '-',
+        utm_campaign: localStorage.getItem('first_utm_campaign') || '-',
+        utm_term: localStorage.getItem('first_utm_term') || '-',
+        utm_content: localStorage.getItem('first_utm_content') || '-',
+        yclid: localStorage.getItem('first_yclid') || '-',
+        landing_page: localStorage.getItem('first_landing_page') || window.location.href,
+        referrer: localStorage.getItem('first_referrer') || '-'
     };
 }
 
@@ -554,6 +567,8 @@ quizForm.addEventListener('submit', async function(e) {
     formData.set('utm_term', utm.utm_term);
     formData.set('utm_content', utm.utm_content);
     formData.set('yclid', utm.yclid);
+    formData.set('landing_page', utm.landing_page);
+    formData.set('referrer', utm.referrer);
 
     const nameVal = (formData.get('name') || '').trim();
     const phoneVal = (formData.get('phone') || '').trim();
