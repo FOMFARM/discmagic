@@ -527,12 +527,139 @@ quizForm.querySelectorAll('.auto-next').forEach(input => {
     });
 });
 
+let preparedPhotoFile = null;
+let isProcessingPhoto = false;
+
 const fileInput = document.getElementById('disk_photo');
-fileInput.addEventListener('change', (e) => {
-    if (e.target.files && e.target.files[0]) {
-        document.getElementById('photo-label').innerText = `Файл выбран: ${e.target.files[0].name}`;
-        document.getElementById('photo-icon').innerText = 'check_circle';
-        document.getElementById('photo-icon').classList.add('text-electric-blue');
+const photoLabel = document.getElementById('photo-label');
+const photoIcon = document.getElementById('photo-icon');
+
+fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) {
+        preparedPhotoFile = null;
+        photoLabel.innerText = 'Загрузите фото дисков (опционально)';
+        photoIcon.innerText = 'add_a_photo';
+        photoIcon.classList.remove('text-electric-blue');
+        return;
+    }
+
+    if (file.size > 25 * 1024 * 1024) {
+        alert('Файл слишком большой. Максимальный размер исходного файла — 25 МБ.');
+        fileInput.value = '';
+        preparedPhotoFile = null;
+        return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+        alert('Допускаются только изображения.');
+        fileInput.value = '';
+        preparedPhotoFile = null;
+        return;
+    }
+
+    isProcessingPhoto = true;
+    submitBtn.disabled = true;
+    photoLabel.innerText = 'Подготавливаем фото...';
+    photoIcon.innerText = 'hourglass_empty';
+    photoIcon.classList.add('text-electric-blue');
+
+    try {
+        let bitmap = null;
+        if (typeof createImageBitmap === 'function') {
+            try {
+                bitmap = await createImageBitmap(file);
+            } catch (err) {
+                bitmap = null;
+            }
+        }
+
+        let imgWidth = bitmap ? bitmap.width : 0;
+        let imgHeight = bitmap ? bitmap.height : 0;
+
+        if (!bitmap) {
+            await new Promise((resolve, reject) => {
+                const img = new Image();
+                const objectUrl = URL.createObjectURL(file);
+                img.onload = () => {
+                    imgWidth = img.naturalWidth;
+                    imgHeight = img.naturalHeight;
+                    URL.revokeObjectURL(objectUrl);
+                    resolve(img);
+                };
+                img.onerror = (err) => {
+                    URL.revokeObjectURL(objectUrl);
+                    reject(err);
+                };
+                img.src = objectUrl;
+            });
+        }
+
+        const maxSide = 1600;
+        let targetWidth = imgWidth;
+        let targetHeight = imgHeight;
+
+        if (targetWidth > maxSide || targetHeight > maxSide) {
+            if (targetWidth > targetHeight) {
+                targetHeight = Math.round((targetHeight * maxSide) / targetWidth);
+                targetWidth = maxSide;
+            } else {
+                targetWidth = Math.round((targetWidth * maxSide) / targetHeight);
+                targetHeight = maxSide;
+            }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+        const ctx = canvas.getContext('2d');
+
+        if (bitmap) {
+            ctx.drawImage(bitmap, 0, 0, targetWidth, targetHeight);
+            if (typeof bitmap.close === 'function') {
+                bitmap.close();
+            }
+        } else {
+            const img = new Image();
+            const objectUrl = URL.createObjectURL(file);
+            await new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = reject;
+                img.src = objectUrl;
+            });
+            ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+            URL.revokeObjectURL(objectUrl);
+        }
+
+        let quality = 0.82;
+        let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+
+        if (blob && blob.size > 2 * 1024 * 1024) {
+            quality = 0.70;
+            blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+        }
+
+        if (!blob) {
+            throw new Error('Не удалось получить blob изображения');
+        }
+
+        preparedPhotoFile = new File([blob], 'disk_photo.jpg', { type: 'image/jpeg' });
+        const sizeMb = (preparedPhotoFile.size / (1024 * 1024)).toFixed(1);
+
+        photoLabel.innerText = `Фото готово: ${sizeMb} МБ`;
+        photoIcon.innerText = 'check_circle';
+        photoIcon.classList.add('text-electric-blue');
+    } catch (err) {
+        console.error('Ошибка подготовки фото:', err);
+        alert('Не удалось подготовить фото. Попробуйте выбрать другое изображение или скриншот.');
+        fileInput.value = '';
+        preparedPhotoFile = null;
+        photoLabel.innerText = 'Загрузите фото дисков (опционально)';
+        photoIcon.innerText = 'add_a_photo';
+        photoIcon.classList.remove('text-electric-blue');
+    } finally {
+        isProcessingPhoto = false;
+        submitBtn.disabled = false;
     }
 });
 
@@ -551,6 +678,11 @@ function getStoredUtmParams() {
 
 quizForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    if (isProcessingPhoto) {
+        alert('Подождите, идёт обработка фотографии...');
+        return;
+    }
+
     const formData = new FormData(quizForm);
     
     const services = [];
@@ -569,6 +701,11 @@ quizForm.addEventListener('submit', async function(e) {
     formData.set('yclid', utm.yclid);
     formData.set('landing_page', utm.landing_page);
     formData.set('referrer', utm.referrer);
+
+    formData.delete('disk_photo');
+    if (preparedPhotoFile) {
+        formData.append('disk_photo', preparedPhotoFile, 'disk_photo.jpg');
+    }
 
     const nameVal = (formData.get('name') || '').trim();
     const phoneVal = (formData.get('phone') || '').trim();
